@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CookieValue;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
@@ -49,7 +50,7 @@ public interface LoginApi {
     @RequestMapping(value = "/login",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Product>> getLogin(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password);
+    ResponseEntity<List<Product>> getLogin(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, HttpServletResponse response);
 
 
     @Operation(summary = "", description = "register", tags={  })

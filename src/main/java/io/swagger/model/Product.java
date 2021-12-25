@@ -200,7 +200,7 @@ public class Product   {
     sb.append("class Product {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    photo: ").append(toIndentedString(photo)).append("\n");
+    sb.append("    Photo: ").append(toIndentedString(photo)).append("\n");
     sb.append("    companyid: ").append(toIndentedString(companyid)).append("\n");
     sb.append("    productid: ").append(toIndentedString(productid)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");

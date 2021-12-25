@@ -26,6 +26,9 @@ public class User   {
   @JsonProperty("surname")
   private String surname = null;
 
+  @JsonProperty("password")
+  private String password = null;
+
   @JsonProperty("basket")
   @Valid
   private List<Product> basket = null;
@@ -44,6 +47,25 @@ public class User   {
 
   public User name(String name) {
     this.name = name;
+    return this;
+  }
+
+  /**
+   * Get password
+   * @return password
+   **/
+  @Schema(description = "")
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public User password(String password) {
+    this.password = password;
     return this;
   }
 
@@ -200,12 +222,13 @@ public class User   {
         Objects.equals(this.address, user.address) &&
         Objects.equals(this.id, user.id) &&
         Objects.equals(this.phone, user.phone) &&
-        Objects.equals(this.email, user.email);
+        Objects.equals(this.email, user.email) &&
+            Objects.equals(this.password, user.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, surname, basket, address, id, phone, email);
+    return Objects.hash(name, surname, basket, address, id, phone, email, password);
   }
 
   @Override
@@ -220,6 +243,7 @@ public class User   {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    password: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }

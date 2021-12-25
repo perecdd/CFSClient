@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -51,31 +52,34 @@ public class ProductsApiController implements ProductsApi {
 
     public ResponseEntity<List<Product>> getProducts(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="name", required=false) String name,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="minPrice", required=false) Integer minPrice,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="maxPrice", required=false) Integer maxPrice,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyID", required=false) Integer companyID,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="count", required=false) Integer count,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="productID", required=false) Integer productID) {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            JSONArray jsonArray = CFS.GetProducts(name, minPrice, maxPrice, companyID, count, productID);
-            if (jsonArray != null) {
-                try {
-                    return new ResponseEntity<List<Product>>(objectMapper.readValue(jsonArray.toString(), List.class), HttpStatus.OK);
-                } catch (IOException e) {
-                    log.error("Couldn't serialize response for content type application/json", e);
-                    return new ResponseEntity<List<Product>>(HttpStatus.INTERNAL_SERVER_ERROR);
-                }
-            }
-            else{
-                return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+        JSONArray jsonArray = CFS.GetProducts(name, minPrice, maxPrice, companyID, count, productID);
+        if (jsonArray != null) {
+            try {
+                return new ResponseEntity<List<Product>>(objectMapper.readValue(jsonArray.toString(), List.class), HttpStatus.OK);
+            } catch (IOException e) {
+                log.error("Couldn't serialize response for content type application/json", e);
+                return new ResponseEntity<List<Product>>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-
-        return new ResponseEntity<List<Product>>(HttpStatus.NOT_IMPLEMENTED);
+        else{
+            return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=true,schema=@Schema()) @CookieValue(value="email", required=true) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=true,schema=@Schema()) @CookieValue(value="password", required=true) String password) {
         String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        if(CFS.OrderProducts(email, password)) {
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+        }
     }
 
-    public ResponseEntity<Void> putProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody List<Product> body) {
+    public ResponseEntity<Void> putProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Product body) {
         String accept = request.getHeader("Accept");
+
+        CFS.AddOrRemoveProductInUserBucket(email, password, body);
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 }
