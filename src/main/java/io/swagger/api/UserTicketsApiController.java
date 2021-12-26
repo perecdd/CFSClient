@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -48,11 +49,20 @@ public class UserTicketsApiController implements UserTicketsApi {
         this.request = request;
     }
 
-    public ResponseEntity<List<InlineResponse200>> getUsersUserid(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=true,schema=@Schema()) @CookieValue(value="email", required=true) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=true,schema=@Schema()) @CookieValue(value="password", required=true) String password) {
+    public ResponseEntity<List<InlineResponse200>> getUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password) {
         String accept = request.getHeader("Accept");
+        if(email == null || password == null) return new ResponseEntity<List<InlineResponse200>>(HttpStatus.UNAUTHORIZED);
+
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<List<InlineResponse200>>(objectMapper.readValue("[ {\n  \"id\" : 0,\n  \"products\" : [ {\n    \"companyid\" : 0,\n    \"productid\" : 6,\n    \"price\" : 1,\n    \"name\" : \"name\",\n    \"count\" : 5,\n    \"description\" : \"description\",\n    \"Photo\" : \"Photo\"\n  }, {\n    \"companyid\" : 0,\n    \"productid\" : 6,\n    \"price\" : 1,\n    \"name\" : \"name\",\n    \"count\" : 5,\n    \"description\" : \"description\",\n    \"Photo\" : \"Photo\"\n  } ],\n  \"status\" : \"status\"\n}, {\n  \"id\" : 0,\n  \"products\" : [ {\n    \"companyid\" : 0,\n    \"productid\" : 6,\n    \"price\" : 1,\n    \"name\" : \"name\",\n    \"count\" : 5,\n    \"description\" : \"description\",\n    \"Photo\" : \"Photo\"\n  }, {\n    \"companyid\" : 0,\n    \"productid\" : 6,\n    \"price\" : 1,\n    \"name\" : \"name\",\n    \"count\" : 5,\n    \"description\" : \"description\",\n    \"Photo\" : \"Photo\"\n  } ],\n  \"status\" : \"status\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                JSONArray result = ShopOwnerSide.getTickets(email, password);
+
+                if(result != null) {
+                    return new ResponseEntity<List<InlineResponse200>>(objectMapper.readValue(result.toString(), List.class), HttpStatus.OK);
+                }
+                else{
+                    return new ResponseEntity<List<InlineResponse200>>(HttpStatus.BAD_REQUEST);
+                }
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<List<InlineResponse200>>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,9 +72,15 @@ public class UserTicketsApiController implements UserTicketsApi {
         return new ResponseEntity<List<InlineResponse200>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=true,schema=@Schema()) @CookieValue(value="email", required=true) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=true,schema=@Schema()) @CookieValue(value="password", required=true) String password,@Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) String ticket) {
+    public ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password,@Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) Integer ticket) {
         String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        if(email == null || password == null || ticket == null) return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        if(ShopOwnerSide.cancelTicket(email, password, ticket)) {
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

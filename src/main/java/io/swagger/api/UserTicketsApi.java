@@ -42,7 +42,7 @@ public interface UserTicketsApi {
     @RequestMapping(value = "/user-tickets",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<InlineResponse200>> getUsersUserid(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=true,schema=@Schema()) @CookieValue(value="email", required=true) String email, @Parameter(in = ParameterIn.COOKIE, description = "password" ,required=true,schema=@Schema()) @CookieValue(value="password", required=true) String password);
+    ResponseEntity<List<InlineResponse200>> getUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email, @Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password);
 
 
     @Operation(summary = "", description = "cancel ticket", tags={  })
@@ -50,7 +50,7 @@ public interface UserTicketsApi {
         @ApiResponse(responseCode = "200", description = "OK") })
     @RequestMapping(value = "/user-tickets",
         method = RequestMethod.POST)
-    ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=true,schema=@Schema()) @CookieValue(value="email", required=true) String email, @Parameter(in = ParameterIn.COOKIE, description = "password" ,required=true,schema=@Schema()) @CookieValue(value="password", required=true) String password, @Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) String ticket);
+    ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email, @Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password, @Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) Integer ticket);
 
 }
 

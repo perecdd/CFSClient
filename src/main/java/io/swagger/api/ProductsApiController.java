@@ -66,8 +66,11 @@ public class ProductsApiController implements ProductsApi {
         }
     }
 
-    public ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=true,schema=@Schema()) @CookieValue(value="email", required=true) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=true,schema=@Schema()) @CookieValue(value="password", required=true) String password) {
+    public ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password) {
         String accept = request.getHeader("Accept");
+
+        if(email == null || password == null ) return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
+
         if(CFS.OrderProducts(email, password)) {
             return new ResponseEntity<Void>(HttpStatus.OK);
         }

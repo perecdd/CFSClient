@@ -57,8 +57,13 @@ public class LoginApiController implements LoginApi {
         String accept = request.getHeader("Accept");
 
         Cookie cookie = new Cookie("email", email);
-        cookie.setHttpOnly(true);
+        cookie.setMaxAge(7 * 24 * 6000);
+
+        Cookie cookie1 = new Cookie("password", password);
+        cookie1.setMaxAge(7 * 24 * 6000);
+
         response.addCookie(cookie);
+        response.addCookie(cookie1);
 
         if (accept != null && accept.contains("application/json")) {
             try {
