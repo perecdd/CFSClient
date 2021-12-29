@@ -176,7 +176,7 @@ public class CFS {
                 con.disconnect();
             }
 
-            return responseCode1 == 200;
+            return responseCode1 == 200 || responseCode1 == 201;
         }
         catch (Exception e){
             e.printStackTrace();

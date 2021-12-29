@@ -34,6 +34,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,8 @@ public class LoginApiController implements LoginApi {
 
     public ResponseEntity<List<Product>> getLogin(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, HttpServletResponse response) {
         String accept = request.getHeader("Accept");
+
+        System.out.println("getLogin");
 
         Cookie cookie = new Cookie("email", email);
         cookie.setMaxAge(7 * 24 * 6000);
@@ -85,6 +88,8 @@ public class LoginApiController implements LoginApi {
     public ResponseEntity<Void> postLogin(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body) {
         String accept = request.getHeader("Accept");
         JSONObject user = new JSONObject();
+
+        System.out.println("postLogin");
 
         user.put("email", body.getEmail());
         user.put("id", body.getId());
