@@ -99,6 +99,41 @@ public class CFS {
         }
     }
 
+    static JSONObject GetProfile(String email, String password){
+        try {
+            URL url = new URL (ip + ":" + port + "/user/profile");
+
+            con = (HttpURLConnection)url.openConnection();
+            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setRequestProperty("email", email);
+            con.setRequestProperty("password", password);
+            con.setRequestMethod("GET");
+            con.setDoOutput(true);
+            con.setDoInput(true);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line+"\n");
+            }
+
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(sb.toString());
+
+            int responseCode = con.getResponseCode();
+            con.disconnect();
+
+            return jsonObject;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     static boolean loginUser(String email, String password){
         try {
             URL url = new URL (ip + ":" + port + "/user");
@@ -269,6 +304,7 @@ public class CFS {
             out.close();
             con.disconnect();
 
+            System.out.println(responseCode);
             return responseCode == 200;
         }
         catch (Exception e){

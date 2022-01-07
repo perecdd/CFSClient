@@ -68,7 +68,7 @@ public class LoginApiController implements LoginApi {
         response.addCookie(cookie);
         response.addCookie(cookie1);
 
-        if (accept != null && accept.contains("application/json")) {
+        if (accept != null) {
             try {
                 JSONArray jsonArray = CFS.GetProductsByUser(email, password);
                 if(jsonArray != null) {
@@ -83,6 +83,38 @@ public class LoginApiController implements LoginApi {
             }
         }
         return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<Void> putLogin(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body) {
+        String accept = request.getHeader("Accept");
+        JSONObject user = new JSONObject();
+
+        System.out.println("putLogin");
+
+        user.put("email", body.getEmail());
+        user.put("id", body.getId());
+        user.put("name", body.getName());
+        user.put("phone", body.getPhone());
+        user.put("email", body.getEmail());
+        user.put("surname", body.getSurname());
+        user.put("password", body.getPassword());
+
+        JSONObject address = new JSONObject();
+        address.put("city", body.getAddress().getCity());
+        address.put("country", body.getAddress().getCountry());
+        address.put("flat", body.getAddress().getFlat());
+        address.put("house", body.getAddress().getHouse());
+        address.put("street", body.getAddress().getStreet());
+
+        user.put("address", address);
+
+        if(CFS.UpdateUserInformation(email, password, user)) {
+            System.out.println("OK PUTED");
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     public ResponseEntity<Void> postLogin(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body) {
@@ -121,7 +153,6 @@ public class LoginApiController implements LoginApi {
         }
         user.put("basket", products);
 
-        System.out.println(body.getPassword());
         if(CFS.createUser(user)) {
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
@@ -130,4 +161,19 @@ public class LoginApiController implements LoginApi {
         }
     }
 
+    public ResponseEntity<User> getProfile(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, HttpServletResponse response){
+        JSONObject profile = CFS.GetProfile(email, password);
+        if(profile != null){
+            try {
+                return new ResponseEntity<User>(objectMapper.readValue(profile.toString(), User.class), HttpStatus.OK);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else{
+            return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED);
+        }
+    }
 }

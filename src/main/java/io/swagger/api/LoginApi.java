@@ -63,9 +63,32 @@ public interface LoginApi {
         
         @ApiResponse(responseCode = "403", description = "Forbidden") })
     @RequestMapping(value = "/login",
-        consumes = { "application/json" }, 
         method = RequestMethod.POST)
     ResponseEntity<Void> postLogin(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body);
 
-}
+    @Operation(summary = "", description = "Update user profile fields", tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
 
+            @ApiResponse(responseCode = "400", description = "Bad Request"),
+
+            @ApiResponse(responseCode = "403", description = "Forbidden") })
+    @RequestMapping(value = "/login",
+            method = RequestMethod.PUT)
+    ResponseEntity<Void> putLogin(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body);
+
+
+    @Operation(summary = "", description = "get profile", tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+
+            @ApiResponse(responseCode = "404", description = "Not Found") })
+    @RequestMapping(value = "/getProfile",
+            produces = { "application/json" },
+            method = RequestMethod.GET)
+    ResponseEntity<User> getProfile(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, HttpServletResponse response);
+}

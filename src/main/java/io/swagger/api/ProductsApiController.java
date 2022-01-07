@@ -52,6 +52,7 @@ public class ProductsApiController implements ProductsApi {
 
     public ResponseEntity<List<Product>> getProducts(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="name", required=false) String name,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="minPrice", required=false) Integer minPrice,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="maxPrice", required=false) Integer maxPrice,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyID", required=false) Integer companyID,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="count", required=false) Integer count,@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="productID", required=false) Integer productID) {
         String accept = request.getHeader("Accept");
+        System.out.println(name + " " + minPrice + " " + maxPrice + " " + companyID + " " + count + " " + productID);
         JSONArray jsonArray = CFS.GetProducts(name, minPrice, maxPrice, companyID, count, productID);
         if (jsonArray != null) {
             try {
@@ -67,6 +68,7 @@ public class ProductsApiController implements ProductsApi {
     }
 
     public ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password) {
+        System.out.println("postProducts");
         String accept = request.getHeader("Accept");
 
         if(email == null || password == null ) return new ResponseEntity<Void>(HttpStatus.UNAUTHORIZED);
@@ -81,8 +83,13 @@ public class ProductsApiController implements ProductsApi {
 
     public ResponseEntity<Void> putProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password,@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Product body) {
         String accept = request.getHeader("Accept");
+        System.out.println("putProducts");
 
-        CFS.AddOrRemoveProductInUserBucket(email, password, body);
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        if(CFS.AddOrRemoveProductInUserBucket(email, password, body)) {
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
+
   <head>
       <meta http-equiv="Pragma" content="no-cache">
       <meta http-equiv="Expires" content="-1">
@@ -62,64 +63,188 @@
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-      </div></header> 
+      </div></header>
+
     <section class="u-clearfix u-grey-5 u-section-1" id="sec-82f7">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <div id="to-insert" class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <h3 class="u-align-center u-text u-text-1">Ваш профиль</h3>
-        <div class="u-form u-form-1">
-          <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-            <div class="u-form-group u-form-name">
-              <label for="name-319c" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите Ваше имя" id="name-319c" name="name" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-group u-form-name u-form-group-2">
-              <label for="name-3e09" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите Вашу Фамилию" id="name-3e09" name="name-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-email u-form-group">
-              <label for="email-319c" class="u-form-control-hidden u-label"></label>
-              <input type="email" placeholder="Введите Ваш email адрес" id="email-319c" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-group u-form-phone u-form-group-4">
-              <label for="phone-2be9" class="u-form-control-hidden u-label"></label>
-              <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Телефон в формате +7(917)0500070" id="phone-2be9" name="phone" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-group u-form-group-5">
-              <label for="text-76dc" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите Надёжный пароль" id="text-76dc" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-            </div>
-            <div class="u-form-address u-form-group u-form-group-6">
-              <label for="address-e9c9" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите Вашу страну" id="address-e9c9" name="address" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-address u-form-group u-form-group-7">
-              <label for="address-de8e" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите Ваш город" id="address-de8e" name="address-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-address u-form-group u-form-group-8">
-              <label for="address-08d4" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите Вашу улицу" id="address-08d4" name="address-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-address u-form-group u-form-group-9">
-              <label for="address-283b" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите номер Вашего дома" id="address-283b" name="address-3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-form-address u-form-group u-form-group-10">
-              <label for="address-fb83" class="u-form-control-hidden u-label"></label>
-              <input type="text" placeholder="Введите номер Вашей квартиры" id="address-fb83" name="address-4" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-            </div>
-            <div class="u-align-left u-form-group u-form-submit">
-              <a href="#" onClick="location.reload(true);" class="u-btn u-btn-submit u-button-style">Отправить</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
-            </div>
-            <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
-            <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
-            <input type="hidden" value="" name="recaptchaResponse">
-          </form>
-        </div>
+
       </div>
     </section>
-    
+
+  <script>
+      window.onload = login;
+      var mass;
+
+      function setCookie(cName, cValue, expDays) {
+          let date = new Date();
+          date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+          const expires = "expires=" + date.toUTCString();
+          document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+      }
+
+      async function login() {
+          var container = document.getElementById('to-insert');
+
+          while (container.firstChild) {
+              container.removeChild(container.firstChild);
+          }
+
+          let url = 'http://localhost:4040/getProfile';
+          let it = document.cookie.split('; ');
+          let email = '';
+          let password = '';
+          for(let i = 0; i < it.length; i++){
+              let submass = it[i].split('=');
+              if(submass[0] === 'password') {
+                  password = submass[1];
+              }
+              if(submass[0] === 'email') {
+                  email = submass[1];
+              }
+          }
+
+          let response = await fetch(url, {
+              method: 'GET',
+              headers: {
+                  'Content-type': 'application/json',
+                  'email': email,
+                  'password': password
+              }
+          });
+
+          if (!response.ok) {
+              alert("Ошибка HTTP: " + response.status);
+              return;
+          }
+
+          let json = await response.json();
+          let result = JSON.stringify(json);
+          mass = JSON.parse(result);
+
+          document.getElementById('to-insert').insertAdjacentHTML("beforeend", "        " +
+              "<div  class=\"u-form u-form-1\">" +
+              "<form action=\"#\" method=\"POST\" class=\"u-clearfix u-form-spacing-10 u-form-vertical u-inner-form\" source=\"custom\" name=\"form\" style=\"padding: 10px;\">\n" +
+              "            <div class=\"u-form-group u-form-name\">\n" +
+              "              <label for=\"name-319c\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['name']+"\" id=\"F1\" name=\"name\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-group u-form-name u-form-group-2\">\n" +
+              "              <label for=\"name-3e09\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['surname']+"\" id=\"F2\" name=\"surname\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-email u-form-group\">\n" +
+              "              <label for=\"email-319c\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"email\" placeholder=\""+mass['email']+"\" id=\"F3\" name=\"email\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-group u-form-phone u-form-group-4\">\n" +
+              "              <label for=\"phone-2be9\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"tel\" pattern=\"\\+?\\d{0,3}[\\s\\(\\-]?([0-9]{2,3})[\\s\\)\\-]?([\\s\\-]?)([0-9]{3})[\\s\\-]?([0-9]{2})[\\s\\-]?([0-9]{2})\" placeholder=\""+mass['phone']+"\" id=\"F4\" name=\"phone\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-group u-form-group-5\">\n" +
+              "              <label for=\"text-76dc\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\"Ваш новый пароль\" id=\"F5\" name=\"password\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-address u-form-group u-form-group-6\">\n" +
+              "              <label for=\"address-e9c9\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['address']['country']+"\" id=\"F6\" name=\"country\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-address u-form-group u-form-group-7\">\n" +
+              "              <label for=\"address-de8e\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['address']['city']+"\" id=\"F7\" name=\"city\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-address u-form-group u-form-group-8\">\n" +
+              "              <label for=\"address-08d4\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['address']['street']+"\" id=\"F8\" name=\"street\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-address u-form-group u-form-group-9\">\n" +
+              "              <label for=\"address-283b\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['address']['house']+"\" id=\"F9\" name=\"house\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-form-address u-form-group u-form-group-10\">\n" +
+              "              <label for=\"address-fb83\" class=\"u-form-control-hidden u-label\"></label>\n" +
+              "              <input type=\"text\" placeholder=\""+mass['address']['flat']+"\" id=\"F10\" name=\"flat\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "            </div>\n" +
+              "            <div class=\"u-align-left u-form-group u-form-submit\">\n" +
+              "              <a id=\"INPUT\" href=\"\" class=\"u-btn u-btn-submit u-button-style\">Отправить</a>\n" +
+              "              <input type=\"submit\" value=\"submit\" class=\"u-form-control-hidden\">\n" +
+              "            </div>\n" +
+              "          </form>" +
+              "        </div>");
+          document.getElementById("INPUT").addEventListener("mousedown", async function () {
+              let url = 'http://localhost:4040/login';
+
+              let it = document.cookie.split('; ');
+              let email = '';
+              let password = '';
+              for(let i = 0; i < it.length; i++){
+                  let submass = it[i].split('=');
+                  if(submass[0] === 'password') {
+                      password = submass[1];
+                  }
+                  if(submass[0] === 'email') {
+                      email = submass[1];
+                  }
+              }
+
+              let NewMass = [];
+
+              for(let i = 0; i < 10; i++){
+                  if(document.getElementById('F' + (i + 1)).value !== ""){
+                      NewMass[i] = document.getElementById('F' + (i + 1)).value;
+                  }
+                  else{
+                      if(document.getElementById('F' + (i + 1)).name === 'flat' ||
+                          document.getElementById('F' + (i + 1)).name === 'house' ||
+                          document.getElementById('F' + (i + 1)).name === 'street' ||
+                          document.getElementById('F' + (i + 1)).name === 'city' ||
+                          document.getElementById('F' + (i + 1)).name === 'country'){
+                          NewMass[i] = mass['address'][document.getElementById('F' + (i + 1)).name];
+                      }
+                      else {
+                          NewMass[i] = mass[document.getElementById('F' + (i + 1)).name];
+                      }
+                  }
+              }
+
+              var data = JSON.stringify({
+                  "address": {
+                      "city": NewMass[5],
+                      "country": NewMass[6],
+                      "flat": NewMass[7],
+                      "house": NewMass[8],
+                      "street": NewMass[9]
+                  },
+                  "email": NewMass[2],
+                  "id": 0,
+                  "name": NewMass[0],
+                  "password": NewMass[4],
+                  "phone": NewMass[3],
+                  "surname": NewMass[1]});
+
+              fetch(url, {
+                  method: 'put',
+                  body: data,
+                  headers: new Headers({
+                      'Content-Type': 'application/json',
+                      'email': email,
+                      'password': password
+                  })
+              }).then(function(response) {
+                  if (!response.ok) {
+                      throw new Error("HTTP status " + response.status);
+                  }
+                  else{
+                      setCookie('email', NewMass[2], 365);
+                      setCookie('password', NewMass[4], 365);
+                  }
+              })
+              window.setTimeout(function () {
+                  login();
+              }, 2000);
+          });
+      }
+  </script>
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
