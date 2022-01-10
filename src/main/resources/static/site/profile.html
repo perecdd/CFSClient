@@ -1,5 +1,649 @@
 <!DOCTYPE html>
+
+<style>
+    .u-section-1 {
+        background-image: none;
+    }
+
+    .u-section-1 .u-sheet-1 {
+        min-height: 768px;
+    }
+
+    .u-section-1 .u-list-1 {
+        grid-template-rows: auto auto;
+        width: 1140px;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-repeater-1 {
+        grid-template-columns: calc(50% - 15px) calc(50% - 15px);
+        grid-gap: 30px 30px;
+        min-height: 618px;
+    }
+
+    .u-section-1 .u-list-item-1 {
+        background-image: none;
+    }
+
+    .u-section-1 .u-container-layout-1 {
+        padding: 30px 0 30px 30px;
+    }
+
+    .u-section-1 .u-image-1 {
+        width: 255px;
+        height: 249px;
+        margin: 0 auto 0 0;
+    }
+
+    .u-section-1 .u-group-1 {
+        width: 270px;
+        min-height: 254px;
+        background-size: auto;
+        height: auto;
+        margin: -249px 0 0 auto;
+    }
+
+    .u-section-1 .u-container-layout-2 {
+        padding: 0 25px 0 35px;
+    }
+
+    .u-section-1 .u-text-1 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-2 {
+        font-style: italic;
+        margin: 0;
+    }
+
+    .u-section-1 .u-text-3 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-4 {
+        font-weight: 700;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-btn-1 {
+        border-style: none;
+        text-transform: uppercase;
+        background-image: none;
+        font-size: 0.875rem;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-list-item-2 {
+        background-size: auto;
+    }
+
+    .u-section-1 .u-container-layout-3 {
+        padding: 30px 0 30px 30px;
+    }
+
+    .u-section-1 .u-image-2 {
+        width: 255px;
+        height: 249px;
+        margin: 0 auto 0 0;
+    }
+
+    .u-section-1 .u-group-2 {
+        width: 270px;
+        min-height: 254px;
+        background-size: auto;
+        height: auto;
+        margin: -249px 0 0 auto;
+    }
+
+    .u-section-1 .u-container-layout-4 {
+        padding: 0 25px 0 35px;
+    }
+
+    .u-section-1 .u-text-5 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-6 {
+        font-style: italic;
+        margin: 0;
+    }
+
+    .u-section-1 .u-text-7 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-8 {
+        font-weight: 700;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-btn-2 {
+        border-style: none;
+        text-transform: uppercase;
+        background-image: none;
+        font-size: 0.875rem;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-list-item-3 {
+        background-size: auto;
+    }
+
+    .u-section-1 .u-container-layout-5 {
+        padding: 30px 0 30px 30px;
+    }
+
+    .u-section-1 .u-image-3 {
+        width: 255px;
+        height: 249px;
+        margin: 0 auto 0 0;
+    }
+
+    .u-section-1 .u-group-3 {
+        width: 270px;
+        min-height: 254px;
+        background-size: auto;
+        height: auto;
+        margin: -249px 0 0 auto;
+    }
+
+    .u-section-1 .u-container-layout-6 {
+        padding: 0 25px 0 35px;
+    }
+
+    .u-section-1 .u-text-9 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-10 {
+        font-style: italic;
+        margin: 0;
+    }
+
+    .u-section-1 .u-text-11 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-12 {
+        font-weight: 700;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-btn-3 {
+        border-style: none;
+        text-transform: uppercase;
+        background-image: none;
+        font-size: 0.875rem;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-list-item-4 {
+        background-size: auto;
+    }
+
+    .u-section-1 .u-container-layout-7 {
+        padding: 30px 0 30px 30px;
+    }
+
+    .u-section-1 .u-image-4 {
+        width: 255px;
+        height: 249px;
+        margin: 0 auto 0 0;
+    }
+
+    .u-section-1 .u-group-4 {
+        width: 270px;
+        min-height: 254px;
+        background-size: auto;
+        height: auto;
+        margin: -249px 0 0 auto;
+    }
+
+    .u-section-1 .u-container-layout-8 {
+        padding: 0 25px 0 35px;
+    }
+
+    .u-section-1 .u-text-13 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-14 {
+        font-style: italic;
+        margin: 0;
+    }
+
+    .u-section-1 .u-text-15 {
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-text-16 {
+        font-weight: 700;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-btn-4 {
+        border-style: none;
+        text-transform: uppercase;
+        background-image: none;
+        font-size: 0.875rem;
+        margin: 20px 0 0;
+    }
+
+    .u-section-1 .u-btn-5 {
+        border-style: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 30px auto 20px;
+    }
+
+    @media (max-width: 1199px) {
+        .u-section-1 .u-list-1 {
+            width: 940px;
+        }
+
+        .u-section-1 .u-image-1 {
+            width: 155px;
+        }
+
+        .u-section-1 .u-group-1 {
+            height: auto;
+        }
+
+        .u-section-1 .u-image-2 {
+            width: 155px;
+        }
+
+        .u-section-1 .u-group-2 {
+            height: auto;
+        }
+
+        .u-section-1 .u-image-3 {
+            width: 155px;
+        }
+
+        .u-section-1 .u-group-3 {
+            height: auto;
+        }
+
+        .u-section-1 .u-image-4 {
+            width: 155px;
+        }
+
+        .u-section-1 .u-group-4 {
+            height: auto;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .u-section-1 .u-list-1 {
+            width: 720px;
+        }
+
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: 100%;
+        }
+
+        .u-section-1 .u-image-1 {
+            width: 300px;
+        }
+
+        .u-section-1 .u-group-1 {
+            width: 377px;
+        }
+
+        .u-section-1 .u-container-layout-2 {
+            padding-left: 30px;
+        }
+
+        .u-section-1 .u-image-2 {
+            width: 300px;
+        }
+
+        .u-section-1 .u-group-2 {
+            width: 377px;
+        }
+
+        .u-section-1 .u-container-layout-4 {
+            padding-left: 30px;
+        }
+
+        .u-section-1 .u-image-3 {
+            width: 300px;
+        }
+
+        .u-section-1 .u-group-3 {
+            width: 377px;
+        }
+
+        .u-section-1 .u-container-layout-6 {
+            padding-left: 30px;
+        }
+
+        .u-section-1 .u-image-4 {
+            width: 300px;
+        }
+
+        .u-section-1 .u-group-4 {
+            width: 377px;
+        }
+
+        .u-section-1 .u-container-layout-8 {
+            padding-left: 30px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .u-section-1 .u-list-1 {
+            width: 540px;
+        }
+
+        .u-section-1 .u-image-1 {
+            width: 245px;
+        }
+
+        .u-section-1 .u-group-1 {
+            width: 265px;
+        }
+
+        .u-section-1 .u-container-layout-2 {
+            padding-right: 30px;
+        }
+
+        .u-section-1 .u-image-2 {
+            width: 245px;
+        }
+
+        .u-section-1 .u-group-2 {
+            width: 265px;
+        }
+
+        .u-section-1 .u-container-layout-4 {
+            padding-right: 30px;
+        }
+
+        .u-section-1 .u-image-3 {
+            width: 245px;
+        }
+
+        .u-section-1 .u-group-3 {
+            width: 265px;
+        }
+
+        .u-section-1 .u-container-layout-6 {
+            padding-right: 30px;
+        }
+
+        .u-section-1 .u-image-4 {
+            width: 245px;
+        }
+
+        .u-section-1 .u-group-4 {
+            width: 265px;
+        }
+
+        .u-section-1 .u-container-layout-8 {
+            padding-right: 30px;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .u-section-1 .u-list-1 {
+            height: auto;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-container-layout-1 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .u-section-1 .u-image-1 {
+            height: 200px;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-group-1 {
+            margin-top: 0;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-container-layout-2 {
+            padding-top: 30px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .u-section-1 .u-text-1 {
+            margin-top: 0;
+        }
+
+        .u-section-1 .u-text-2 {
+            margin-right: auto;
+        }
+
+        .u-section-1 .u-btn-1 {
+            margin-right: auto;
+        }
+
+        .u-section-1 .u-container-layout-3 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .u-section-1 .u-image-2 {
+            height: 200px;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-group-2 {
+            margin-top: 0;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-container-layout-4 {
+            padding-top: 30px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .u-section-1 .u-text-5 {
+            margin-top: 0;
+            margin-right: auto;
+        }
+
+        .u-section-1 .u-text-6 {
+            margin-right: auto;
+        }
+
+        .u-section-1 .u-btn-2 {
+            margin-right: auto;
+        }
+
+        .u-section-1 .u-container-layout-5 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .u-section-1 .u-image-3 {
+            height: 200px;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-group-3 {
+            margin-top: 0;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-container-layout-6 {
+            padding-top: 30px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .u-section-1 .u-text-9 {
+            margin-top: 0;
+        }
+
+        .u-section-1 .u-container-layout-7 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .u-section-1 .u-image-4 {
+            height: 200px;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-group-4 {
+            margin-top: 0;
+            margin-right: initial;
+            margin-left: initial;
+            width: auto;
+        }
+
+        .u-section-1 .u-container-layout-8 {
+            padding-top: 30px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .u-section-1 .u-text-13 {
+            margin-top: 0;
+        }
+    }
+</style>
 <html style="font-size: 16px;">
+
+<script>
+    async function loadTickets() {
+        let it = document.cookie.split('; ');
+        let email = '';
+        let password = '';
+        for (let i = 0; i < it.length; i++) {
+            let submass = it[i].split('=');
+            if (submass[0] === 'password') {
+                password = submass[1];
+            }
+            if (submass[0] === 'email') {
+                email = submass[1];
+            }
+        }
+
+        let url = 'http://localhost:4040/user-tickets';
+
+        let response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'email': email,
+                'password': password
+            }
+        });
+
+        if (response.ok) {
+            let json = await response.json();
+            let result = JSON.stringify(json)
+            let mass = JSON.parse(result);
+            for (let i = 0; i < result.length; i++) {
+                if(mass[i]['status'] !== 'canceled') {
+                    let j = 0;
+                    addContainer(i, mass[i]['id'], mass[i]['status']);
+                    addCancelButton(mass[i]['id']);
+                    while (mass[i]['products'][j] !== undefined) {
+                        addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i);
+                        j++;
+                    }
+                }
+            }
+        } else {
+            alert("Ошибка HTTP: " + response.status);
+        }
+    }
+
+    function addContainer(table_number, id, status){
+        document.getElementById("sec-da98").insertAdjacentHTML("beforeend", "" +
+            "<div class=\"u-clearfix u-sheet u-valign-middle u-sheet-1\">\n" +
+            "          <div class=\"u-expanded-width-xs u-list u-list-1\">\n" +
+            "            <p class=\"u-text u-text-2\">Заказ номер: "+id+"; Состояние: "+status+"</p>"+
+            "              <div id=\"to-insert-"+table_number+"\" class=\"u-repeater u-repeater-1\">\n" +
+            "              </div>\n" +
+            "          </div>\n" +
+            "      </div>");
+    }
+
+    async function cancelOrder(orderNumber) {
+        let it = document.cookie.split('; ');
+        let email = '';
+        let password = '';
+        for (let i = 0; i < it.length; i++) {
+            let submass = it[i].split('=');
+            if (submass[0] === 'password') {
+                password = submass[1];
+            }
+            if (submass[0] === 'email') {
+                email = submass[1];
+            }
+        }
+
+        let url = 'http://localhost:4040/user-tickets';
+
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'email': email,
+                'password': password,
+                'ticket': orderNumber
+            }
+        });
+
+        if (response.ok) {
+            window.open('/profile');
+        }
+    }
+
+    function addCancelButton(orderNumber){
+        document.getElementById("sec-da98").insertAdjacentHTML("beforeend", "" +
+            "<form target=\"_blank\"  action=\"/auth\" method=\"POST\" class=\"u-clearfix u-form-spacing-10 u-form-vertical u-inner-form\" source=\"custom\" name=\"form\" style=\"padding: 10px;\">\n" +
+            "        <div class=\"u-align-center u-form-group u-form-submit\">\n" +
+            "            <a onclick=\"cancelOrder("+orderNumber+")\" class=\"u-btn u-btn-submit u-button-style\">Отменить заказ</a>\n" +
+            "            <input type=\"submit\" value=\"submit\" class=\"u-form-control-hidden\">\n" +
+            "        </div>\n" +
+            "    </form>");
+    }
+
+    function addCode(Photo, companyid, count, description, name, price, productid, table_number) {
+        document.getElementById("to-insert-" + table_number).insertAdjacentHTML("beforeend", "" +
+            "<div class=\"u-list-item u-repeater-item u-video-cover u-white u-list-item-1\">\n" +
+            "                    <div class=\"u-container-layout u-similar-container\">\n" +
+            "                        <img alt=\"\" class=\"u-expanded-width-xs u-image u-image-default u-image-4\" src=\"" + Photo + "\">\n" +
+            "                        <div class=\"u-container-style u-expanded-width-xs u-group u-video-cover u-group-4\">\n" +
+            "                            <div class=\"u-container-layout u-valign-middle-xl u-valign-middle-xs u-container-layout-8\">\n" +
+            "                                <h3 class=\"u-custom-font u-font-oswald u-text u-text-10\">" + name + "</h3>\n" +
+            "                                <p class=\"u-text u-text-default u-text-11\">" + description + " COUNT:" + count + "</p>\n" +
+            "                                <h6 class=\"u-text u-text-palette-3-base u-text-12\">" + price + " RUB</h6>\n" +
+            "                            </div>\n" +
+            "                        </div>\n" +
+            "                    </div>\n" +
+            "                </div>");
+    }
+</script>
 
   <head>
       <meta http-equiv="Pragma" content="no-cache">
@@ -70,10 +714,18 @@
         <h3 class="u-align-center u-text u-text-1">Ваш профиль</h3>
 
       </div>
+
+        <section class="u-align-center u-clearfix u-grey-10 u-section-1" id="sec-da98">
+            <h3 class="u-text u-text-1">Ваши заказы</h3>
+            <p class="u-text u-text-2">Здесь вы можете следить за процессом обработки и доставки вашего заказа.</p>
+        </section>
     </section>
 
   <script>
-      window.onload = login;
+      window.onload = function () {
+          login();
+          loadTickets();
+      }
       var mass;
 
       function setCookie(cName, cValue, expDays) {
@@ -245,8 +897,10 @@
           });
       }
   </script>
-    
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
+
+
+
+      <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
       <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
         <span>Website Templates</span>

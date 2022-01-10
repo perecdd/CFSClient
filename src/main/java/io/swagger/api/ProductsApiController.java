@@ -67,7 +67,7 @@ public class ProductsApiController implements ProductsApi {
         }
     }
 
-    public ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password) {
+    public ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=false,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=false,schema=@Schema())@RequestHeader(value="password", required=true) String password) {
         System.out.println("postProducts");
         String accept = request.getHeader("Accept");
 

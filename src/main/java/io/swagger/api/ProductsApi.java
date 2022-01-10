@@ -58,7 +58,7 @@ public interface ProductsApi {
             @ApiResponse(responseCode = "404", description = "Not Found") })
     @RequestMapping(value = "/products",
             method = RequestMethod.POST)
-    ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email, @Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password);
+    ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema())@RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema())@RequestHeader(value="password", required=true) String password);
 
 
     @Operation(summary = "", description = "Remove or Add product from basket", tags={  })

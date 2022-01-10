@@ -721,6 +721,46 @@
     </div>
 </section>
 
+<script>
+    async function orderProducts() {
+        let url = 'http://localhost:4040/products';
+
+        let it = document.cookie.split('; ');
+        let email = '';
+        let password = '';
+        for(let i = 0; i < it.length; i++){
+            let submass = it[i].split('=');
+            if(submass[0] === 'password') {
+                password = submass[1];
+            }
+            if(submass[0] === 'email') {
+                email = submass[1];
+            }
+        }
+
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'email': email,
+                'password': password
+            }
+        });
+
+        if (response.ok) {
+            window.open('/profile');
+        }
+    }
+</script>
+
+<section class="u-align-center u-clearfix u-grey-10 u-section-1" id="carousel_16f8">
+    <form target="_blank"  action="/auth" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+        <div class="u-align-center u-form-group u-form-submit">
+            <a onclick="orderProducts()" class="u-btn u-btn-submit u-button-style">Заказать</a>
+            <input type="submit" value="submit" class="u-form-control-hidden">
+        </div>
+    </form>
+</section>
+
 
 
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>

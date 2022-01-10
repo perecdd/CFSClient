@@ -610,9 +610,23 @@
 
         let url = 'http://localhost:4040/products';
 
+        let findHeaders = new Headers();
+
+        findName = document.getElementById('text-1b1e').value;
+        findMinPrice = document.getElementById('text-e36c').value;
+        findMaxPrice = document.getElementById('text-2219').value;
+        findCount = document.getElementById('text-c555').value;
+
+        if(findName !== "") findHeaders.append('name', findName);
+        if(findMinPrice !== "") findHeaders.append('minPrice', Number(findMinPrice));
+        if(findMaxPrice !== "") findHeaders.append('maxPrice', Number(findMaxPrice));
+        if(findCount !== "") findHeaders.append('count', Number(findCount));
+
         let response = await fetch(url, {
-            method: 'GET'
+            method: 'GET',
+            headers: findHeaders
         });
+
         if (response.ok) {
             let json = await response.json();
             let result = JSON.stringify(json)
@@ -701,28 +715,6 @@
                 "productid": productid });
             xhr.send(data);
         });
-        //window.open('#sec-212a');
-        /*
-        <div class="u-align-left u-container-style u-dialog u-shape-rectangle u-white u-dialog-1">
-        <div class="u-container-layout u-valign-top-xs u-container-layout-1">
-            <h3 class="u-text u-text-1">Добавить в корзину</h3>
-            <img class="u-expand-resize u-expanded-width-xs u-image u-image-1" data-image-width="2000" data-image-height="1333" src="images/6.svg">
-            <p class="u-text u-text-2">Название -<br>Описание -<br>Цена за штуку -&nbsp;<br>Количество на складе -&nbsp;
-            </p>
-            <div class="u-form u-form-1">
-                <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form-1" style="padding: 10px;">
-                    <div class="u-form-group u-form-group-1">
-                        <label for="text-6c59" class="u-form-control-hidden u-label"></label>
-                        <input type="text" placeholder="Введите количество" id="text-6c59" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                    </div>
-                    <div class="u-align-left u-form-group u-form-submit">
-                        <a href="#" class="u-btn u-btn-submit u-button-style">Отправить</a>
-                        <input type="submit" value="submit" class="u-form-control-hidden">
-                    </div>
-                </form>
-            </div>
-            <p class="u-text u-text-3">Вы заплатите:</p>
-        </div><button class="u-dialog-close-button u-icon u-text-grey-50 u-icon-1">*/
     }
 </script>
 

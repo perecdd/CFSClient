@@ -49,30 +49,26 @@ public class UserTicketsApiController implements UserTicketsApi {
         this.request = request;
     }
 
-    public ResponseEntity<List<InlineResponse200>> getUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password) {
+    public ResponseEntity<List<InlineResponse200>> getUserTickets(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password) {
         String accept = request.getHeader("Accept");
         if(email == null || password == null) return new ResponseEntity<List<InlineResponse200>>(HttpStatus.UNAUTHORIZED);
 
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                JSONArray result = ShopOwnerSide.getTickets(email, password);
+        try {
+            JSONArray result = ShopOwnerSide.getTickets(email, password);
 
-                if(result != null) {
-                    return new ResponseEntity<List<InlineResponse200>>(objectMapper.readValue(result.toString(), List.class), HttpStatus.OK);
-                }
-                else{
-                    return new ResponseEntity<List<InlineResponse200>>(HttpStatus.BAD_REQUEST);
-                }
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<InlineResponse200>>(HttpStatus.INTERNAL_SERVER_ERROR);
+            if(result != null) {
+                return new ResponseEntity<List<InlineResponse200>>(objectMapper.readValue(result.toString(), List.class), HttpStatus.OK);
             }
+            else{
+                return new ResponseEntity<List<InlineResponse200>>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (IOException e) {
+            log.error("Couldn't serialize response for content type application/json", e);
+            return new ResponseEntity<List<InlineResponse200>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return new ResponseEntity<List<InlineResponse200>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.COOKIE, description = "email" ,required=false,schema=@Schema()) @CookieValue(value="email", required=false) String email,@Parameter(in = ParameterIn.COOKIE, description = "password" ,required=false,schema=@Schema()) @CookieValue(value="password", required=false) String password,@Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) Integer ticket) {
+    public ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password,@Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) Integer ticket) {
         String accept = request.getHeader("Accept");
         if(email == null || password == null || ticket == null) return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         if(ShopOwnerSide.cancelTicket(email, password, ticket)) {
