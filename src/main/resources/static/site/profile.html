@@ -706,10 +706,20 @@
             let result = JSON.stringify(json);
             let mass = JSON.parse(result);
             for (let i = 0; i < result.length; i++) {
-                if(mass[i]['status'] !== 'canceled' && mass[i]['status'] !== 'success') {
+                if(mass[i] === undefined) break;
+                if(mass[i]['status'] !== 'cancel' && mass[i]['status'] !== 'canceled' && mass[i]['status'] !== 'success' && mass[i]['status'] !== 'successful') {
                     let j = 0;
                     addContainer(i, mass[i]['id'], mass[i]['status']);
                     addCancelButton(mass[i]['id']);
+                    while (mass[i]['products'][j] !== undefined) {
+                        addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i);
+                        j++;
+                    }
+                }
+                else if(mass[i]['status'] !== 'cancel' && mass[i]['status'] !== 'canceled' && mass[i]['status'] !== 'successful'){
+                    let j = 0;
+                    addContainer(i, mass[i]['id'], mass[i]['status']);
+                    addRatingButton(mass[i]['products'][j]['companyid'], mass[i]['id']);
                     while (mass[i]['products'][j] !== undefined) {
                         addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i);
                         j++;
@@ -760,6 +770,69 @@
         if (response.ok) {
             window.location.href = '/profile';
         }
+    }
+
+    async function rate(companyid, orderNumber) {
+        let it = document.cookie.split('; ');
+        let email = '';
+        let password = '';
+        for (let i = 0; i < it.length; i++) {
+            let submass = it[i].split('=');
+            if (submass[0] === 'password') {
+                password = submass[1];
+            }
+            if (submass[0] === 'email') {
+                email = submass[1];
+            }
+        }
+
+        let url = 'http://localhost:4040/user-tickets';
+
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'email': email,
+                'password': password,
+                'ticket': orderNumber
+            }
+        });
+
+        if (response.ok) {
+            url = 'http://localhost:4040/rating';
+
+            let response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'email': email,
+                    'password': password,
+                    'companyid': companyid
+                }
+            });
+
+            window.location.href = '/profile';
+        }
+    }
+
+    function addRatingButton(companyid, orderNumber){
+        document.getElementById("sec-da98").insertAdjacentHTML("beforeend", "" +
+            "<form class=\"u-clearfix u-sheet\" target=\"_blank\"  action=\"/auth\" method=\"POST\" class=\"u-clearfix u-form-spacing-10 u-form-vertical u-inner-form\" source=\"custom\" name=\"form\" style=\"padding: 10px;\">\n" +
+            "        <div class=\"u-align-center u-form-group u-form-submit\">\n" +
+            "             <label for=\"text-6c59\" class=\"u-form-control-hidden u-label\"></label>\n" +
+            "             <input id=\"NUM12\" type=\"number\" placeholder=\"Введите количество\" value=\"0\" min=\"0\" max=\"10\" name=\"text\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required>\n" +
+            "        </div>\n" +
+            "        <div class=\"u-align-center u-form-group u-form-submit\">\n" +
+            "            <a onclick=\"rate("+companyid+", " + orderNumber + ")\" class=\"u-btn u-btn-submit u-button-style\">Оценить заказ</a>\n" +
+            "            <input type=\"submit\" value=\"submit\" class=\"u-form-control-hidden\">\n" +
+            "        </div>\n" +
+            "    </form>");
+        document.getElementById("NUM12").addEventListener("keyup", function (){
+            if(Number(this.value) > Number(10)) this.value = 10;
+            if(Number(this.value) < Number(0)) this.value = 0;
+        });
+        document.getElementById("NUM12").addEventListener("mouseup", function (){
+            if(Number(this.value) > Number(10)) this.value = 10;
+            if(Number(this.value) < Number(0)) this.value = 0;
+        });
     }
 
     function addCancelButton(orderNumber){

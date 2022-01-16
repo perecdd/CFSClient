@@ -621,6 +621,7 @@
             let mass = JSON.parse(result);
             if(result.length !== 2) {
                 for (let i = 0; i < result.length; i++) {
+                    if(mass[i] === undefined) break;
                     addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
                 }
             }
