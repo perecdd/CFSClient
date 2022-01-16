@@ -619,8 +619,15 @@
             let json = await response.json();
             let result = JSON.stringify(json)
             let mass = JSON.parse(result);
-            for(let i = 0; i < result.length; i++){
-                addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
+            if(result.length !== 2) {
+                for (let i = 0; i < result.length; i++) {
+                    addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
+                }
+            }
+            else{
+                document.getElementById("table-to-insert-2").insertAdjacentHTML("afterbegin", "<h1>Корзина</h1>" +
+                    "<p>В будущем здесь будет храниться то, что вы закажите. Для того, чтобы сделать ваш первый заказ" +
+                    "зайдите в меню поиска и выберите нужный вам товар, после чего он окажется здесь.</p>");
             }
         } else {
             alert("Ошибка HTTP: " + response.status);
@@ -630,7 +637,24 @@
     function addCode(Photo, companyid, count, description, name, price, productid) {
         let id = Dcount;
         Dcount = Dcount + 1;
-        document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "<div class=\"u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1\">\n" +
+        var SelectedIndex;
+
+        document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "" +
+            "            <div id=\"container-" + productid + "\" class=\"u-container-style u-list-item u-repeater-item\">\n" +
+            "              <div class=\"u-container-layout u-similar-container u-valign-top u-container-layout-1\">\n" +
+            "<a class=\"boxLink\" onclick=\"SelectedIndex = " + Dcount + "; GPhoto = '" + Photo + "'; Gcompanyid = " + companyid + "; Gcount = " + count + "; Gdescription = '" + description + "'; Gname = '" + name + "'; Gprice = " + price + "; Gproductid = "+productid+"; location.hash ='submit-0';" +
+            "\"><table border=\"1px solid grey;\">" +
+            "                <tr><td><img alt=\"\" class=\"u-image u-image-default u-image-1\" data-image-width=\"2000\" data-image-height=\"1333\" src=\"" + Photo + "\"></tr></td>\n" +
+            "                <tr><td><h3 class=\"u-text u-text-default u-text-1\">" + name + "</h3></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-2\">Количество: " + count + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-2\">Описание: " + description + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">Цена: " + price + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">ID: " + productid + "</p></tr></td>\n" +
+            "</table></a>" +
+            "              </div>\n" +
+            "            </div>");
+
+        /*document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "<div class=\"u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1\">\n" +
             "                    <div class=\"u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-7\">\n" +
             "                        <img alt=\"\" class=\"u-expanded-width-xs u-image u-image-default u-image-4\" src=\"" + Photo + "\">\n" +
             "                        <div class=\"u-container-style u-expanded-width-xs u-group u-video-cover u-group-4\">\n" +
@@ -643,8 +667,8 @@
             "                            </div>\n" +
             "                        </div>\n" +
             "                    </div>\n" +
-            "                </div>");
-        document.getElementById("INPUT"+Dcount).addEventListener("mousedown", async function () {
+            "                </div>");*/
+        /*document.getElementById("INPUT"+Dcount).addEventListener("mousedown", async function () {
             let url = 'http://localhost:4040/products';
 
             let it = document.cookie.split('; ');
@@ -672,9 +696,88 @@
             window.setTimeout(function () {
                 find(email, password);
             }, 1000);
-        });
+        });*/
+    }
+
+    var GPhoto;
+    var Gcompanyid;
+    var Gcount;
+    var Gdescription;
+    var Gname;
+    var Gprice;
+    var Gproductid;
+    
+    function removeProduct() {
+        let url = 'http://localhost:4040/products';
+
+        let it = document.cookie.split('; ');
+        let email = '';
+        let password = '';
+        for(let i = 0; i < it.length; i++){
+            let submass = it[i].split('=');
+            if(submass[0] === 'password') {
+                password = submass[1];
+            }
+            if(submass[0] === 'email') {
+                email = submass[1];
+            }
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open("PUT", url);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.setRequestHeader('email', email);
+        xhr.setRequestHeader('password', password);
+        var data = JSON.stringify({ "Photo": GPhoto, "companyid": Gcompanyid,
+            "count": Gcount, "description": Gdescription,
+            "name": Gname, "price": Gprice,
+            "productid": Gproductid });
+        xhr.send(data);
+        window.setTimeout(function () {
+            find(email, password);
+        }, 1000);
     }
 </script>
+
+<style>
+    #submit-0:target {
+        display: block;
+    }
+    #submit-0 {
+        background: rgba(102, 102, 102, 0.68);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 9999999999;
+    }
+    window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        border: 1px solid #cecece;
+        padding: 50px;
+        transform: translate(-50%,-50%);
+        background-color: #fafafa;
+    }
+    div#main_text a.close_window {
+        position: absolute;
+        right: 10px;
+        top: 4px;
+        border: none;
+    }
+</style>
+
+<div id="submit-0">
+    <window>
+        <button onclick="location.hash =''" type="button">x</button>
+        <p align="center">Вы уверены, что хотите убрать данный товар из списка?</p>
+        <button onclick="removeProduct(); location.hash ='';" style="width: 100%; text-align: center; margin-bottom: 2px;">Да, удалить товар</button>
+        <button onclick="location.hash =''" style="width: 100%; text-align: center; margin-top: 2px;">Нет, оставить товар в корзине</button>
+    </window>
+</div>
 
 <body onload="login()" class="u-body"><header class="u-clearfix u-header u-header" id="sec-2346"><div class="u-clearfix u-sheet u-sheet-1">
     <a href="/" data-page-id="65723904" class="u-image u-logo u-image-1" data-image-width="300" data-image-height="187" title="Главная страница">
@@ -711,8 +814,8 @@
         </div>
     </nav>
 </div></header>
-<section class="u-align-center u-clearfix u-grey-10 u-section-1" id="carousel_16f7">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+<section class="u-align-center u-grey-5 u-clearfix u-section-1" id="carousel_16f7">
+    <div id="table-to-insert-2" class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <div class="u-expanded-width-xs u-list u-list-1">
             <div id="table-to-insert" class="u-repeater u-repeater-1">
 
@@ -747,12 +850,156 @@
         });
 
         if (response.ok) {
-            window.open('/profile');
+            window.location.href = '/profile';
         }
     }
 </script>
 
-<section class="u-align-center u-clearfix u-grey-10 u-section-1" id="carousel_16f8">
+<style>
+    .boxLink {
+        color: black;
+        text-decoration: none
+    }
+
+    .boxLink:active {
+        color: black;
+        text-decoration: none
+    }
+
+    .boxLink:visited {
+        color: black;
+        text-decoration: none
+    }
+
+    .boxLink:hover {
+        color: black;
+        text-decoration: none
+    }
+</style>
+
+<style>
+    .u-section-1 .u-sheet-1 {
+        min-height: 383px;
+    }
+
+    .u-section-1 .u-list-1 {
+        grid-template-rows: auto;
+        margin-top: -9px;
+        margin-bottom: 20px;
+    }
+
+    .u-section-1 .u-repeater-1 {
+        grid-template-columns: 33.3333% 33.3333% 33.3333%;
+        min-height: 372px;
+        grid-gap: 0px 0px;
+    }
+
+    .u-section-1 .u-container-layout-1 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-1 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-1 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-2 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-3 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-container-layout-2 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-2 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-4 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-5 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-6 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-container-layout-3 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-3 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-7 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-8 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-9 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    @media (max-width: 1199px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: repeat(3, 33.333333333333336%);
+            min-height: 307px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: repeat(2, 50%);
+            min-height: 705px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: 100%;
+        }
+
+        .u-section-1 .u-container-layout-1 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .u-section-1 .u-container-layout-2 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .u-section-1 .u-container-layout-3 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+</style>
+
+<section class="u-align-center u-clearfix u-grey-5 u-section-1" id="carousel_16f8">
     <form target="_blank"  action="/auth" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
         <div class="u-align-center u-form-group u-form-submit">
             <a onclick="orderProducts()" class="u-btn u-btn-submit u-button-style">Заказать</a>
@@ -765,15 +1012,6 @@
 
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
 <section class="u-backlink u-clearfix u-grey-80">
-    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-    </a>
-    <p class="u-text">
-        <span>created with</span>
-    </p>
-    <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-    </a>.
 </section>
 </body>
 </html>

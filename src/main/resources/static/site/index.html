@@ -1,6 +1,226 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
+      <style>
+          .u-section-1 .u-sheet-1 {
+              min-height: 539px;
+          }
+
+          .u-section-1 .u-text-1 {
+              margin: 60px auto 0;
+          }
+
+          .u-section-1 .u-text-2 {
+              width: 740px;
+              margin: 20px auto 0;
+          }
+
+          .u-section-1 .u-list-1 {
+              grid-template-rows: repeat(1, auto);
+              height: auto;
+              width: 1140px;
+              margin: 20px auto 60px;
+          }
+
+          .u-section-1 .u-repeater-1 {
+              grid-template-columns: repeat(3, calc(33.3333% - 6.66667px));
+              min-height: 315px;
+              grid-gap: 10px;
+          }
+
+          .u-section-1 .u-container-layout-1 {
+              padding: 30px;
+          }
+
+          .u-section-1 .u-icon-1 {
+              height: 64px;
+              width: 64px;
+              margin: 0 auto;
+          }
+
+          .u-section-1 .u-text-3 {
+              width: 223px;
+              margin: 30px auto 0;
+          }
+
+          .u-section-1 .u-text-4 {
+              margin: 20px 0 0;
+          }
+
+          .u-section-1 .u-container-layout-2 {
+              padding: 30px;
+          }
+
+          .u-section-1 .u-icon-2 {
+              height: 64px;
+              width: 64px;
+              margin: 0 auto;
+          }
+
+          .u-section-1 .u-text-5 {
+              width: 223px;
+              margin: 30px auto 0;
+          }
+
+          .u-section-1 .u-text-6 {
+              margin: 20px 0 0;
+          }
+
+          .u-section-1 .u-container-layout-3 {
+              padding: 30px;
+          }
+
+          .u-section-1 .u-icon-3 {
+              height: 64px;
+              width: 64px;
+              color: rgb(17, 17, 17) !important;
+              margin: 0 auto;
+          }
+
+          .u-section-1 .u-text-7 {
+              width: 223px;
+              margin: 30px auto 0;
+          }
+
+          .u-section-1 .u-text-8 {
+              margin: 20px 0 0;
+          }
+
+          @media (max-width: 1199px) {
+              .u-section-1 .u-sheet-1 {
+                  min-height: 484px;
+              }
+
+              .u-section-1 .u-list-1 {
+                  width: 940px;
+              }
+          }
+
+          @media (max-width: 991px) {
+              .u-section-1 .u-sheet-1 {
+                  min-height: 820px;
+              }
+
+              .u-section-1 .u-text-2 {
+                  width: 720px;
+              }
+
+              .u-section-1 .u-list-1 {
+                  width: 720px;
+              }
+
+              .u-section-1 .u-repeater-1 {
+                  grid-template-columns: repeat(2, calc(50% - 5px));
+              }
+          }
+
+          @media (max-width: 767px) {
+              .u-section-1 .u-text-2 {
+                  width: 540px;
+              }
+
+              .u-section-1 .u-list-1 {
+                  width: 540px;
+              }
+
+              .u-section-1 .u-repeater-1 {
+                  grid-template-columns: repeat(1, 100%);
+              }
+
+              .u-section-1 .u-container-layout-1 {
+                  padding-left: 10px;
+                  padding-right: 10px;
+              }
+
+              .u-section-1 .u-container-layout-2 {
+                  padding-left: 10px;
+                  padding-right: 10px;
+              }
+
+              .u-section-1 .u-container-layout-3 {
+                  padding-left: 10px;
+                  padding-right: 10px;
+              }
+          }
+
+          @media (max-width: 575px) {
+              .u-section-1 .u-text-2 {
+                  width: 340px;
+              }
+
+              .u-section-1 .u-list-1 {
+                  width: 340px;
+              }
+          }.u-section-2 .u-sheet-1 {
+               min-height: 451px;
+           }
+
+          .u-section-2 .u-group-1 {
+              width: 800px;
+              min-height: 331px;
+              margin: -29px auto;
+          }
+
+          .u-section-2 .u-container-layout-1 {
+              padding: 30px;
+          }
+
+          .u-section-2 .u-text-1 {
+              margin: 0 auto 0 10px;
+          }
+
+          .u-section-2 .u-text-2 {
+              margin: 20px 0 0 10px;
+          }
+
+          .u-section-2 .u-btn-1 {
+              background-image: none;
+              border-style: none none solid;
+              margin: 30px auto 0 10px;
+              padding: 0;
+          }
+
+          @media (max-width: 991px) {
+              .u-section-2 .u-group-1 {
+                  width: 720px;
+              }
+
+              .u-section-2 .u-text-1 {
+                  margin-left: 0;
+              }
+
+              .u-section-2 .u-text-2 {
+                  margin-left: 0;
+              }
+
+              .u-section-2 .u-btn-1 {
+                  margin-left: 0;
+              }
+          }
+
+          @media (max-width: 767px) {
+              .u-section-2 .u-group-1 {
+                  width: 540px;
+              }
+
+              .u-section-2 .u-container-layout-1 {
+                  padding-left: 10px;
+                  padding-right: 10px;
+              }
+          }
+
+          @media (max-width: 575px) {
+              .u-section-2 .u-sheet-1 {
+                  min-height: 483px;
+              }
+
+              .u-section-2 .u-group-1 {
+                  width: 340px;
+                  margin-top: -13px;
+                  margin-bottom: -13px;
+              }
+          }
+      </style>
       <meta http-equiv="Pragma" content="no-cache">
       <meta http-equiv="Expires" content="-1">
       <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
@@ -26,160 +246,97 @@
 		"name": "",
 		"logo": "images/logo.png"
 }</script>
-    <meta name="theme-color" content="#478ac9">
-    <meta property="og:title" content="Главная страница">
-    <meta property="og:type" content="website">
-  </head>
   <body data-home-page="Главная-страница.html" data-home-page-title="Главная страница" class="u-body"><header class="u-clearfix u-header u-header" id="sec-2346"><div class="u-clearfix u-sheet u-sheet-1">
-        <a href="/" data-page-id="65723904" class="u-image u-logo u-image-1" data-image-width="300" data-image-height="187" title="Главная страница">
+      <a href="Главная-страница.html" data-page-id="65723904" class="u-image u-logo u-image-1" data-image-width="300" data-image-height="187" title="Главная страница">
           <img src="images/logo.png" class="u-logo-image u-logo-image-1">
-        </a>
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+      </a>
+      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
           <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-            <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
-              <svg viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</symbol>
-</defs></svg>
-            </a>
+              <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+                  <svg viewBox="0 0 24 24"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+                  </symbol>
+                  </defs></svg>
+              </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/" style="padding: 10px 20px;">Главная страница</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/profile" style="padding: 10px 20px;">Профиль</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/basket" style="padding: 10px 20px;">Корзина</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="/find" style="padding: 10px 20px;">Поиск</a>
-</li></ul>
+              <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Главная-страница.html" style="padding: 10px 20px;">Главная страница</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Профиль.html" style="padding: 10px 20px;">Профиль</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Корзина.html" style="padding: 10px 20px;">Корзина</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Поиск.html" style="padding: 10px 20px;">Поиск</a>
+              </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
-            <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-              <div class="u-inner-container-layout u-sidenav-overflow">
-                <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/" style="padding: 10px 20px;">Главная страница</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/profile" style="padding: 10px 20px;">Профиль</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/basket" style="padding: 10px 20px;">Корзина</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="/find" style="padding: 10px 20px;">Поиск</a>
-</li></ul>
+              <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                  <div class="u-inner-container-layout u-sidenav-overflow">
+                      <div class="u-menu-close"></div>
+                      <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Главная-страница.html" style="padding: 10px 20px;">Главная страница</a>
+                      </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Профиль.html" style="padding: 10px 20px;">Профиль</a>
+                      </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Корзина.html" style="padding: 10px 20px;">Корзина</a>
+                      </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Поиск.html" style="padding: 10px 20px;">Поиск</a>
+                      </li></ul>
+                  </div>
               </div>
-            </div>
-            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+              <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
-        </nav>
-      </div></header>
-    <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="sec-cdf5">
+      </nav>
+  </div></header>
+  <section class="u-clearfix u-section-1" id="sec-a21e">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <h2 class="u-text u-text-default u-text-1">Рекомендуемые магазины</h2>
-        <div class="u-expanded-width u-gallery u-layout-horizontal u-lightbox u-no-transition u-show-text-on-hover u-width-fixed u-gallery-1">
-          <div class="u-gallery-inner"><div class="u-effect-fade u-gallery-item u-gallery-item-1"><div class="u-back-slide"><img class="u-back-image u-back-image-1" src="images/3.svg">
-</div><div class="u-over-slide u-shading u-over-slide-1"><h3 class="u-gallery-heading"></h3><p class="u-gallery-text"></p>
-</div>
-</div><div class="u-effect-fade u-gallery-item u-gallery-item-2"><div class="u-back-slide"><img class="u-back-image u-back-image-2" src="images/3.svg">
-</div><div class="u-over-slide u-shading u-over-slide-2"><h3 class="u-gallery-heading"></h3><p class="u-gallery-text"></p>
-</div>
-</div><div class="u-effect-fade u-gallery-item u-gallery-item-3"><div class="u-back-slide"><img class="u-back-image u-back-image-3" src="images/3.svg">
-</div><div class="u-over-slide u-shading u-over-slide-3"><h3 class="u-gallery-heading"></h3><p class="u-gallery-text"></p>
-</div>
-</div><div class="u-effect-fade u-gallery-item u-gallery-item-4"><div class="u-back-slide"><img class="u-back-image u-back-image-4" src="images/3.svg">
-</div><div class="u-over-slide u-shading u-over-slide-4"><h3 class="u-gallery-heading"></h3><p class="u-gallery-text"></p>
-</div>
-</div><div class="u-effect-fade u-gallery-item u-gallery-item-5"><div class="u-back-slide"><img class="u-back-image u-back-image-5" src="images/3.svg">
-</div><div class="u-over-slide u-shading u-over-slide-5"><h3 class="u-gallery-heading"></h3><p class="u-gallery-text"></p>
-</div>
-</div><div class="u-effect-fade u-gallery-item u-gallery-item-6"><div class="u-back-slide"><img class="u-back-image u-back-image-6" src="images/3.svg">
-</div><div class="u-over-slide u-shading u-over-slide-6"><h3 class="u-gallery-heading"></h3><p class="u-gallery-text"></p>
-</div>
-</div></div>
-          <a class="u-absolute-vcenter u-gallery-nav u-gallery-nav-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-1" href="#" role="button">
-            <span aria-hidden="true">
-              <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
-            </span>
-            <span class="sr-only">
-              <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
-            </span>
-          </a>
-          <a class="u-absolute-vcenter u-gallery-nav u-gallery-nav-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-gallery-nav-2" href="#" role="button">
-            <span aria-hidden="true">
-              <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
-            </span>
-            <span class="sr-only">
-              <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-section-2" id="sec-702c">
-      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-list u-list-1">
-          <div class="u-repeater u-repeater-1">
-            <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-1" data-image-width="2000" data-image-height="1333">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                <h3 class="u-text u-text-default u-text-1">Sample Headline</h3>
-                <p class="u-text u-text-default u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+          <h2 class="u-align-center u-text u-text-default u-text-1">Ключевые особенности</h2>
+          <p class="u-align-center u-text u-text-2">Cloud Food Store - платформа, позволяющая за несколько секунд сделать заказ и получить продукты.</p>
+          <div class="u-list u-list-1">
+              <div class="u-repeater u-repeater-1">
+                  <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                      <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-icon u-icon-circle u-icon-1">
+            <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 128 128" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a3cd"></use></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 128 128" id="svg-a3cd"><path d="m26.4 108.7c-1.2 0-2.2-1-2.2-2.2s1-2.2 4.7-2.2h48.7v-7.4h-31.2v-9.9h31.2v-8.4h-58.7c-7.7 0-10.6-3-10.6-6.6v-57.1c0-3.7 3-6.6 6.6-6.6h81.2c3.7 0 6.6 3 6.6 6.6v27h8.3v-27c0-8.2-6.7-14.9-14.9-14.9h-81.2c-8.2 0-14.9 6.7-14.9 14.9v57.1c0 8.2 6.7 14.9 14.9 14.9h23.2v10.1h-13.8c-4.3 0-8.5 3.7-8.5 9.5v0.2c0 4.6 3.7 9.3 8.3 9.3h53.5v-7.3h-51.2z"></path><path d="m118 41.9h-30c-5.8 0-10.5 4.7-10.5 10.6 0 0 0.1 66.3 0.1 66.4 0 4.3 5.1 9 10.4 9h30c5.6 0 10.2-4.4 10.5-10.1v-65.3c0-5.9-4.7-10.6-10.5-10.6zm2.4 75.5c-0.1 1.3-1.1 2.3-2.4 2.3h-30c-1 0-1.9-0.7-2.2-1.6l-0.2-65.6c0-1.3 1.1-2.4 2.4-2.4h30c1.3 0 2.4 1.1 2.4 2.4v64.9z"></path></svg>
+          </span>
+                          <h3 class="u-text u-text-3">Удобство</h3>
+                          <p class="u-text u-text-default u-text-4">Сайт доступен на всех устройствах, чтобы заказать товар, нужно всего лишь добавить его в корзину и заказать.</p>
+                      </div>
+                  </div>
+                  <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                      <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-icon u-icon-circle u-icon-2">
+            <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 128 128" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-fd1f"></use></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 128 128" id="svg-fd1f"><path d="m92.7 22c2.4 0 4.4 2 4.4 4.5v4.2h-89.1v-4.2c0-2.5 2-4.5 4.4-4.5h80.3m4.4 14.6v7.8h-61.8-0.6-26.7v-7.8h89.1m18.5 13.7c2.4 0 4.4 2 4.4 4.5v46.7c0 2.5-2 4.5-4.4 4.5h-80.3c-2.4 0-4.4-2-4.4-4.5v-46.7c0-2.3 1.8-4.3 4.1-4.4l80.6-0.1m-91.6 0.1c-0.6 1.3-1 2.9-1 4.4v22.9h-10.6c-2.4 0-4.4-2-4.4-4.5v-22.8h18m66.7-36.4h-80.3c-6.8 0-12.4 5.6-12.4 12.5v46.8c0 6.9 5.6 12.5 12.4 12.5h10.6v15.9c0 6.9 5.6 12.5 12.4 12.5h80.3c6.8 0 12.4-5.6 12.4-12.5v-46.7c0-6.9-5.6-12.5-12.4-12.5h-10.6v-15.9c-0.1-7-5.6-12.6-12.4-12.6z"></path><path d="m67.6 69.9c2 0 3.8 0.7 5.3 1.8-1.1 2-1.7 4.3-1.7 6.8 0 2.4 0.6 4.7 1.7 6.8-1.5 1.2-3.4 1.8-5.3 1.8-4.7 0-8.6-3.9-8.6-8.6s3.8-8.6 8.6-8.6m18.4 0c4.7 0 8.6 3.9 8.6 8.6s-3.9 8.6-8.6 8.6-8.6-3.9-8.6-8.6 3.8-8.6 8.6-8.6m-18.4-8c-9.2 0-16.6 7.5-16.6 16.6 0 9.2 7.5 16.6 16.6 16.6 3.3 0 6.5-1 9.2-2.8 2.6 1.8 5.8 2.8 9.2 2.8 9.2 0 16.6-7.5 16.6-16.6 0-9.2-7.5-16.6-16.6-16.6-3.4 0-6.6 1-9.2 2.8-2.7-1.8-6-2.8-9.2-2.8z"></path></svg>
+          </span>
+                          <h3 class="u-text u-text-5">Цены</h3>
+                          <p class="u-text u-text-default u-text-6">В следствии повышенной конкуренции, цены на Cloud Food Store ниже, чем в обыном магазине</p>
+                      </div>
+                  </div>
+                  <div class="u-align-center u-container-style u-list-item u-repeater-item">
+                      <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-icon u-icon-circle u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52.966 52.966" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b0cc"></use></svg><svg class="u-svg-content" viewBox="0 0 52.966 52.966" x="0px" y="0px" id="svg-b0cc" style="enable-background:new 0 0 52.966 52.966;"><path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+	c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+	C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+	S32.459,40,21.983,40z"></path></svg>
+
+
+          </span>
+                          <h3 class="u-text u-text-7">Поиск</h3>
+                          <p class="u-text u-text-default u-text-8">Вы можете искать товары, как по конкретному продавцу, так и по цене или названию.</p>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-2" data-image-width="2000" data-image-height="1333">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
-                <h3 class="u-text u-text-default u-text-3">Sample Headline</h3>
-                <p class="u-text u-text-default u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-              </div>
-            </div>
-            <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-3" data-image-width="2000" data-image-height="1333">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
-                <h3 class="u-text u-text-default u-text-5">Sample Headline</h3>
-                <p class="u-text u-text-default u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
-    </section>
-    <section class="u-clearfix u-section-3" id="carousel_56fc">
+  </section>
+  <section class="u-align-center u-clearfix u-section-2" id="sec-b72f">
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-list u-list-1">
-          <div class="u-repeater u-repeater-1">
-            <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-1" data-image-width="2000" data-image-height="1333">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
-                <h3 class="u-text u-text-default u-text-1">Sample Headline</h3>
-                <p class="u-text u-text-default u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+          <div class="u-container-style u-group u-group-1">
+              <div class="u-container-layout u-valign-middle u-container-layout-1">
+                  <h2 class="u-text u-text-default u-text-1">О нас</h2>
+                  <p class="u-text u-text-2">Cloud Food Store - платформа, основанная одним человеком, нашим автором - Ивановым Евгением. Основная цель была в том, чтобы позволить небольшим фирмам и продавцам возможность продавать их продукцию. Причём нужно было, чтобы покупатели могли быстро сделать покупку, а продавцы легко создать профиль и опубликовать товары. Обе эти цели CFS выполняет. Проект является Open Source и получает финансирование только от пожертвований со стороны пользователей.</p>
+                  <a href="https://github.com/perecdd" class="u-active-none u-border-2 u-border-palette-1-base u-btn u-btn-rectangle u-button-style u-hover-none u-none u-btn-1">github</a>
               </div>
-            </div>
-            <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-2" data-image-width="2000" data-image-height="1333">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
-                <h3 class="u-text u-text-default u-text-3">Sample Headline</h3>
-                <p class="u-text u-text-default u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-              </div>
-            </div>
-            <div class="u-container-style u-image u-list-item u-repeater-item u-shading u-image-3" data-image-width="2000" data-image-height="1333">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
-                <h3 class="u-text u-text-default u-text-5">Sample Headline</h3>
-                <p class="u-text u-text-default u-text-6">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-              </div>
-            </div>
           </div>
-        </div>
       </div>
-    </section>
-    
-    
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
+  </section>
+
+
+
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
+  <section class="u-backlink u-clearfix u-grey-80">
+  </section>
   </body>
 </html>

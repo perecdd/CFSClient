@@ -222,6 +222,7 @@ public class CFS {
     static boolean AddOrRemoveProductInUserBucket(String email, String password, Product product){
         try {
             JSONArray jsonArray = GetProductsByUser(email, password);
+            System.out.println(product);
 
             boolean finded = false;
             JSONArray result = new JSONArray();

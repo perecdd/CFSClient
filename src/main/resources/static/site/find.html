@@ -1,559 +1,6 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 <head>
-    <style>
-        .u-section-1 .u-sheet-1 {
-            min-height: 430px;
-        }
-
-        .u-section-1 .u-text-1 {
-            width: 350px;
-            margin: 15px auto 0;
-        }
-
-        .u-section-1 .u-form-1 {
-            height: 325px;
-            width: 570px;
-            background-image: none;
-            margin: 15px auto 28px;
-        }
-
-        .u-section-1 .u-form-group-1 {
-            margin-left: 0;
-        }
-
-        .u-section-1 .u-form-group-2 {
-            margin-left: 0;
-        }
-
-        .u-section-1 .u-form-group-3 {
-            margin-left: 0;
-        }
-
-        .u-section-1 .u-form-group-4 {
-            margin-left: 0;
-        }
-
-        @media (max-width: 767px) {
-            .u-section-1 .u-form-1 {
-                width: 540px;
-            }
-        }
-
-        @media (max-width: 575px) {
-            .u-section-1 .u-text-1 {
-                width: 340px;
-            }
-
-            .u-section-1 .u-form-1 {
-                width: 340px;
-            }
-
-            .u-section-1 .u-form-group-1 {
-                width: 100%;
-            }
-
-            .u-section-1 .u-form-group-2 {
-                width: 100%;
-            }
-
-            .u-section-1 .u-form-group-3 {
-                width: 100%;
-            }
-
-            .u-section-1 .u-form-group-4 {
-                width: 100%;
-            }
-
-            .u-section-1 .u-form-group-5 {
-                width: 100%;
-            }
-        } .u-section-2 {
-              background-image: none;
-          }
-
-        .u-section-2 .u-sheet-1 {
-            min-height: 693px;
-        }
-
-        .u-section-2 .u-list-1 {
-            grid-template-rows: auto auto;
-            width: 1140px;
-            margin: 20px 0;
-        }
-
-        .u-section-2 .u-repeater-1 {
-            grid-template-columns: calc(50% - 15px) calc(50% - 15px);
-            grid-gap: 30px 30px;
-            min-height: 618px;
-        }
-
-        .u-section-2 .u-list-item-1 {
-            background-image: none;
-        }
-
-        .u-section-2 .u-container-layout-1 {
-            padding: 30px 0 30px 30px;
-        }
-
-        .u-section-2 .u-image-1 {
-            width: 255px;
-            height: 249px;
-            margin: 0 auto 0 0;
-        }
-
-        .u-section-2 .u-group-1 {
-            width: 270px;
-            min-height: 249px;
-            background-size: auto;
-            margin: -249px 0 0 auto;
-        }
-
-        .u-section-2 .u-container-layout-2 {
-            padding: 0 25px;
-        }
-
-        .u-section-2 .u-text-1 {
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-text-2 {
-            font-style: italic;
-            margin: 20px 0 0 auto;
-        }
-
-        .u-section-2 .u-text-3 {
-            font-weight: 700;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-btn-1 {
-            border-style: none;
-            text-transform: uppercase;
-            background-image: none;
-            font-size: 0.875rem;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-list-item-2 {
-            background-size: auto;
-        }
-
-        .u-section-2 .u-container-layout-3 {
-            padding: 30px 0 30px 30px;
-        }
-
-        .u-section-2 .u-image-2 {
-            width: 255px;
-            height: 249px;
-            margin: 0 auto 0 0;
-        }
-
-        .u-section-2 .u-group-2 {
-            width: 270px;
-            min-height: 249px;
-            background-size: auto;
-            margin: -249px 0 0 auto;
-        }
-
-        .u-section-2 .u-container-layout-4 {
-            padding: 0 25px;
-        }
-
-        .u-section-2 .u-text-4 {
-            margin: 30px 128px 0 0;
-        }
-
-        .u-section-2 .u-text-5 {
-            font-style: italic;
-            margin: 20px 0 0 auto;
-        }
-
-        .u-section-2 .u-text-6 {
-            font-weight: 700;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-btn-2 {
-            border-style: none;
-            text-transform: uppercase;
-            background-image: none;
-            font-size: 0.875rem;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-list-item-3 {
-            background-size: auto;
-        }
-
-        .u-section-2 .u-container-layout-5 {
-            padding: 30px 0 30px 30px;
-        }
-
-        .u-section-2 .u-image-3 {
-            width: 255px;
-            height: 249px;
-            margin: 0 auto 0 0;
-        }
-
-        .u-section-2 .u-group-3 {
-            width: 270px;
-            min-height: 249px;
-            background-size: auto;
-            margin: -249px 0 0 auto;
-        }
-
-        .u-section-2 .u-container-layout-6 {
-            padding: 0 25px;
-        }
-
-        .u-section-2 .u-text-7 {
-            margin: 20px 111px 0 0;
-        }
-
-        .u-section-2 .u-text-8 {
-            font-style: italic;
-            margin: 20px 0 0 auto;
-        }
-
-        .u-section-2 .u-text-9 {
-            font-weight: 700;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-btn-3 {
-            border-style: none;
-            text-transform: uppercase;
-            background-image: none;
-            font-size: 0.875rem;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-list-item-4 {
-            background-size: auto;
-        }
-
-        .u-section-2 .u-container-layout-7 {
-            padding: 30px 0 30px 30px;
-        }
-
-        .u-section-2 .u-image-4 {
-            width: 255px;
-            height: 249px;
-            margin: 0 auto 0 0;
-        }
-
-        .u-section-2 .u-group-4 {
-            width: 270px;
-            min-height: 249px;
-            background-size: auto;
-            margin: -249px 0 0 auto;
-        }
-
-        .u-section-2 .u-container-layout-8 {
-            padding: 0 25px;
-        }
-
-        .u-section-2 .u-text-10 {
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-text-11 {
-            font-style: italic;
-            margin: 20px 0 0 auto;
-        }
-
-        .u-section-2 .u-text-12 {
-            font-weight: 700;
-            margin: 20px 0 0;
-        }
-
-        .u-section-2 .u-btn-4 {
-            border-style: none;
-            text-transform: uppercase;
-            background-image: none;
-            font-size: 0.875rem;
-            margin: 20px 0 0;
-        }
-
-        @media (max-width: 1199px) {
-            .u-section-2 .u-sheet-1 {
-                min-height: 670px;
-            }
-
-            .u-section-2 .u-list-1 {
-                width: 940px;
-            }
-
-            .u-section-2 .u-image-1 {
-                width: 155px;
-            }
-
-            .u-section-2 .u-image-2 {
-                width: 155px;
-            }
-
-            .u-section-2 .u-image-3 {
-                width: 155px;
-            }
-
-            .u-section-2 .u-image-4 {
-                width: 155px;
-            }
-        }
-
-        @media (max-width: 991px) {
-            .u-section-2 .u-list-1 {
-                width: 720px;
-            }
-
-            .u-section-2 .u-repeater-1 {
-                grid-template-columns: 100%;
-            }
-
-            .u-section-2 .u-image-1 {
-                width: 300px;
-            }
-
-            .u-section-2 .u-group-1 {
-                width: 377px;
-            }
-
-            .u-section-2 .u-image-2 {
-                width: 300px;
-            }
-
-            .u-section-2 .u-group-2 {
-                width: 377px;
-            }
-
-            .u-section-2 .u-image-3 {
-                width: 300px;
-            }
-
-            .u-section-2 .u-group-3 {
-                width: 377px;
-            }
-
-            .u-section-2 .u-image-4 {
-                width: 300px;
-            }
-
-            .u-section-2 .u-group-4 {
-                width: 377px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .u-section-2 .u-list-1 {
-                width: 540px;
-            }
-
-            .u-section-2 .u-image-1 {
-                width: 245px;
-            }
-
-            .u-section-2 .u-group-1 {
-                width: 265px;
-            }
-
-            .u-section-2 .u-container-layout-2 {
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-
-            .u-section-2 .u-image-2 {
-                width: 245px;
-            }
-
-            .u-section-2 .u-group-2 {
-                width: 265px;
-            }
-
-            .u-section-2 .u-container-layout-4 {
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-
-            .u-section-2 .u-image-3 {
-                width: 245px;
-            }
-
-            .u-section-2 .u-group-3 {
-                width: 265px;
-            }
-
-            .u-section-2 .u-container-layout-6 {
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-
-            .u-section-2 .u-image-4 {
-                width: 245px;
-            }
-
-            .u-section-2 .u-group-4 {
-                width: 265px;
-            }
-
-            .u-section-2 .u-container-layout-8 {
-                padding-left: 30px;
-                padding-right: 30px;
-            }
-        }
-
-        @media (max-width: 575px) {
-            .u-section-2 .u-sheet-1 {
-                min-height: 2322px;
-            }
-
-            .u-section-2 .u-list-1 {
-                height: auto;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-container-layout-1 {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .u-section-2 .u-image-1 {
-                height: 200px;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-group-1 {
-                min-height: 177px;
-                margin-top: 0;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-container-layout-2 {
-                padding-top: 30px;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .u-section-2 .u-text-1 {
-                margin-top: 0;
-            }
-
-            .u-section-2 .u-text-2 {
-                margin-right: auto;
-                margin-left: 0;
-            }
-
-            .u-section-2 .u-btn-1 {
-                margin-right: auto;
-            }
-
-            .u-section-2 .u-container-layout-3 {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .u-section-2 .u-image-2 {
-                height: 200px;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-group-2 {
-                min-height: 177px;
-                margin-top: 0;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-container-layout-4 {
-                padding-top: 30px;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .u-section-2 .u-text-4 {
-                margin-top: 0;
-                margin-right: auto;
-            }
-
-            .u-section-2 .u-text-5 {
-                margin-right: auto;
-                margin-left: 0;
-            }
-
-            .u-section-2 .u-btn-2 {
-                margin-right: auto;
-            }
-
-            .u-section-2 .u-container-layout-5 {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .u-section-2 .u-image-3 {
-                height: 200px;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-group-3 {
-                min-height: 177px;
-                margin-top: 0;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-container-layout-6 {
-                padding-top: 30px;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .u-section-2 .u-text-7 {
-                margin-top: 0;
-            }
-
-            .u-section-2 .u-container-layout-7 {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-
-            .u-section-2 .u-image-4 {
-                height: 200px;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-group-4 {
-                min-height: 177px;
-                margin-top: 0;
-                margin-right: initial;
-                margin-left: initial;
-                width: auto;
-            }
-
-            .u-section-2 .u-container-layout-8 {
-                padding-top: 30px;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .u-section-2 .u-text-10 {
-                margin-top: 0;
-            }
-        }
-    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Расширенный поиск">
@@ -631,8 +78,26 @@
             let json = await response.json();
             let result = JSON.stringify(json)
             let mass = JSON.parse(result);
-            for(let i = 0; i < result.length; i++){
-                addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
+
+            var container2 = document.getElementById('table-to-insert-2');
+
+            while (container2.firstChild) {
+                container2.removeChild(container2.firstChild);
+            }
+
+            container2.insertAdjacentHTML("afterbegin", "" +
+                "        <div class=\"u-expanded-width u-list u-list-1\">\n" +
+                "            <div id=\"table-to-insert\" class=\"u-repeater u-repeater-1\">\n" +
+                "            </div>\n" +
+                "        </div>");
+
+            if(result.length !== 2) {
+                for (let i = 0; i < result.length; i++) {
+                    addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
+                }
+            }
+            else{
+                document.getElementById("table-to-insert-2").insertAdjacentHTML("afterbegin", "<p align='center'>К сожалению, не удалось найти продуктов по вашему запросу.</p>");
             }
         } else {
             alert("Ошибка HTTP: " + response.status);
@@ -640,19 +105,19 @@
     }
 
     function addCode(Photo, companyid, count, description, name, price, productid) {
-        document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "<div class=\"u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1\">\n" +
-            "                    <div class=\"u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-7\">\n" +
-            "                        <img alt=\"\" class=\"u-expanded-width-xs u-image u-image-default u-image-4\" src=\"" + Photo + "\">\n" +
-            "                        <div class=\"u-container-style u-expanded-width-xs u-group u-video-cover u-group-4\">\n" +
-            "                            <div class=\"u-container-layout u-valign-middle-xl u-valign-middle-xs u-container-layout-8\">\n" +
-            "                                <h3 class=\"u-custom-font u-font-oswald u-text u-text-10\">" + name + "</h3>\n" +
-            "                                <p class=\"u-text u-text-default u-text-11\">" + description + " COUNT:" + count + "</p>\n" +
-            "                                <h6 class=\"u-text u-text-palette-3-base u-text-12\">" + price + " RUB</h6>\n" +
-            "                                <a onclick=\"orderProduct(\'"+Photo+"\', \'"+companyid+"\', \'"+count+"\', \'"+description+"\', \'"+name+"\', \'"+price+"\', \'"+productid+"\')\" href=\"#sec-212a\" class=\"u-btn u-btn-rectangle u-button-style u-dialog-link u-grey-10 u-btn-4\">Добавить в корзину</a>\n" +
-            "                            </div>\n" +
-            "                        </div>\n" +
-            "                    </div>\n" +
-            "                </div>");
+        document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "" +
+            "            <div id=\"container-" + productid + "\" class=\"u-container-style u-list-item u-repeater-item\">\n" +
+            "              <div class=\"u-container-layout u-similar-container u-valign-top u-container-layout-1\">\n" +
+            "<a class=\"u-dialog-link boxLink\" onclick=\"orderProduct(\'"+Photo+"\', \'"+companyid+"\', \'"+count+"\', \'"+description+"\', \'"+name+"\', \'"+price+"\', \'"+productid+"\');\" href=\"#sec-212a\"><table border=\"1px solid grey;\">" +
+            "                <tr><td><img alt=\"\" class=\"u-image u-image-default u-image-1\" data-image-width=\"2000\" data-image-height=\"1333\" src=\"" + Photo + "\"></tr></td>\n" +
+            "                <tr><td><h3 class=\"u-text u-text-default u-text-1\">" + name + "</h3></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-2\">Количество: " + count + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-2\">Описание: " + description + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">Цена: " + price + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">ID: " + productid + "</p></tr></td>\n" +
+            "</table></a>" +
+            "              </div>\n" +
+            "            </div>");
     }
 </script>
 <script>
@@ -672,10 +137,10 @@
             "                <form action=\"#\" method=\"POST\" class=\"u-clearfix u-form-spacing-10 u-form-vertical u-inner-form\" source=\"custom\" name=\"form-1\" style=\"padding: 10px;\">\n" +
             "                    <div class=\"u-form-group u-form-group-1\">\n" +
             "                        <label for=\"text-6c59\" class=\"u-form-control-hidden u-label\"></label>\n" +
-            "                        <input id=\"NUM\" type=\"number\" placeholder=\"Введите количество\" name=\"text\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\">\n" +
+            "                        <input id=\"NUM\" type=\"number\" placeholder=\"Введите количество\" value=\"0\" min=\"0\" max=\"" + count + "\" name=\"text\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required>\n" +
             "                    </div>\n" +
             "                    <div class=\"u-align-left u-form-group u-form-submit\">\n" +
-            "                        <a id=\"INPUT\" href=\"#\" class=\"u-btn u-btn-submit u-button-style\">Отправить</a>\n" +
+            "                        <a id=\"INPUT\" href=\"#\" class=\"u-btn u-btn-submit u-button-style\">Добавить</a>\n" +
             "                        <input type=\"submit\" value=\"submit\" class=\"u-dialog-close-button u-form-control-hidden\">\n" +
             "                    </div>\n" +
             "                </form>\n" +
@@ -684,7 +149,13 @@
             "        </div><button class=\"u-dialog-close-button u-icon u-text-grey-50 u-icon-1\">" +
             "<svg class=\"u-svg-link\" preserveAspectRatio=\"xMidYMin slice\" viewBox=\"0 0 409.806 409.806\" style=\"\"><use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#svg-4e2d\"></use></svg>\n" +
             "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" xml:space=\"preserve\" class=\"u-svg-content\" viewBox=\"0 0 409.806 409.806\" x=\"0px\" y=\"0px\" id=\"svg-4e2d\" style=\"enable-background:new 0 0 409.806 409.806;\"><g><g><path d=\"M228.929,205.01L404.596,29.343c6.78-6.548,6.968-17.352,0.42-24.132c-6.548-6.78-17.352-6.968-24.132-0.42    c-0.142,0.137-0.282,0.277-0.42,0.42L204.796,180.878L29.129,5.21c-6.78-6.548-17.584-6.36-24.132,0.42    c-6.388,6.614-6.388,17.099,0,23.713L180.664,205.01L4.997,380.677c-6.663,6.664-6.663,17.468,0,24.132    c6.664,6.662,17.468,6.662,24.132,0l175.667-175.667l175.667,175.667c6.78,6.548,17.584,6.36,24.132-0.42    c6.387-6.614,6.387-17.099,0-23.712L228.929,205.01z\"></path>\n");
-        document.getElementById("NUM").addEventListener("mouseout", function (){
+        document.getElementById("NUM").addEventListener("keyup", function (){
+            if(Number(this.value) > Number(count)) this.value = count;
+            let totalPrice = price * this.value;
+            document.getElementById("NumCalc").innerHTML = 'Вы заплатите: ' + totalPrice;
+        });
+        document.getElementById("NUM").addEventListener("mouseup", function (){
+            if(Number(this.value) > Number(count)) this.value = count;
             let totalPrice = price * this.value;
             document.getElementById("NumCalc").innerHTML = 'Вы заплатите: ' + totalPrice;
         });
@@ -715,6 +186,7 @@
                 "productid": productid });
             xhr.send(data);
         });
+        location.hash ='sec-212a';
     }
 </script>
 
@@ -755,7 +227,6 @@
 </div></header>
 <section class="u-align-center u-clearfix u-section-1" id="sec-29e8">
     <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1">Расширенный поиск</h2>
         <div class="u-form u-white u-form-1">
             <form action="#" method="POST" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form">
                 <div class="u-form-group u-form-group-1">
@@ -764,15 +235,15 @@
                 </div>
                 <div class="u-form-group u-form-group-2">
                     <label for="text-e36c" class="u-form-control-hidden u-label"></label>
-                    <input type="text" placeholder="Минимальная цена" id="text-e36c" name="text-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
+                    <input type="number" placeholder="Минимальная цена" id="text-e36c" name="text-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
                 </div>
                 <div class="u-form-group u-form-group-3">
                     <label for="text-2219" class="u-form-control-hidden u-label"></label>
-                    <input type="text" placeholder="Максимальная цена" id="text-2219" name="text-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
+                    <input type="number" placeholder="Максимальная цена" id="text-2219" name="text-2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
                 </div>
                 <div class="u-form-group u-form-group-4">
                     <label for="text-c555" class="u-form-control-hidden u-label"></label>
-                    <input type="text" placeholder="Количество" id="text-c555" name="text-3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
+                    <input type="number" placeholder="Количество" id="text-c555" name="text-3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle">
                 </div>
                 <div class="u-align-center u-form-group u-form-submit u-form-group-5">
                     <a href="#" class="u-btn u-btn-submit u-button-style">Искать</a>
@@ -782,29 +253,166 @@
         </div>
     </div>
 </section>
-<section class="u-align-center u-clearfix u-grey-10 u-section-2" id="carousel_32a6">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <div class="u-expanded-width-xs u-list u-list-1">
+<section class="u-clearfix u-section-1 u-grey-5" id="sec-6194">
+
+    <style>
+        .boxLink {
+            color: black;
+            text-decoration: none
+        }
+
+        .boxLink:active {
+            color: black;
+            text-decoration: none
+        }
+
+        .boxLink:visited {
+            color: black;
+            text-decoration: none
+        }
+
+        .boxLink:hover {
+            color: black;
+            text-decoration: none
+        }
+    </style>
+
+    <div id="table-to-insert-2" class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-list u-list-1">
             <div id="table-to-insert" class="u-repeater u-repeater-1">
+
 
             </div>
         </div>
     </div>
 </section>
 
+<style>
+    .u-section-1 .u-sheet-1 {
+        min-height: 383px;
+    }
+
+    .u-section-1 .u-list-1 {
+        grid-template-rows: auto;
+        margin-top: -9px;
+        margin-bottom: 20px;
+    }
+
+    .u-section-1 .u-repeater-1 {
+        grid-template-columns: 33.3333% 33.3333% 33.3333%;
+        min-height: 372px;
+        grid-gap: 0px 0px;
+    }
+
+    .u-section-1 .u-container-layout-1 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-1 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-1 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-2 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-3 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-container-layout-2 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-2 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-4 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-5 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-6 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-container-layout-3 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-3 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-7 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-8 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-9 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    @media (max-width: 1199px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: repeat(3, 33.333333333333336%);
+            min-height: 307px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: repeat(2, 50%);
+            min-height: 705px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: 100%;
+        }
+
+        .u-section-1 .u-container-layout-1 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .u-section-1 .u-container-layout-2 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .u-section-1 .u-container-layout-3 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+</style>
 
 
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
 <section class="u-backlink u-clearfix u-grey-80">
-    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-    </a>
-    <p class="u-text">
-        <span>created with</span>
-    </p>
-    <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-    </a>.
+
 </section>
 <section class="u-align-center u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-5" id="sec-212a">
 

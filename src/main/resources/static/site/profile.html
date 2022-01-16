@@ -531,6 +531,150 @@
 </style>
 <html style="font-size: 16px;">
 
+<style>
+    .boxLink {
+        color: black;
+        text-decoration: none
+    }
+
+    .boxLink:active {
+        color: black;
+        text-decoration: none
+    }
+
+    .boxLink:visited {
+        color: black;
+        text-decoration: none
+    }
+
+    .boxLink:hover {
+        color: black;
+        text-decoration: none
+    }
+</style>
+
+<style>
+    .u-section-1 .u-sheet-1 {
+        min-height: 383px;
+    }
+
+    .u-section-1 .u-list-1 {
+        grid-template-rows: auto;
+        margin-top: -9px;
+        margin-bottom: 20px;
+    }
+
+    .u-section-1 .u-repeater-1 {
+        grid-template-columns: 33.3333% 33.3333% 33.3333%;
+        min-height: 372px;
+        grid-gap: 0px 0px;
+    }
+
+    .u-section-1 .u-container-layout-1 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-1 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-1 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-2 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-3 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-container-layout-2 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-2 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-4 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-5 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-6 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-container-layout-3 {
+        padding: 20px 30px 11px;
+    }
+
+    .u-section-1 .u-image-3 {
+        height: 260px;
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .u-section-1 .u-text-7 {
+        margin: 20px auto 0 0;
+    }
+
+    .u-section-1 .u-text-8 {
+        margin: 11px 0 0;
+    }
+
+    .u-section-1 .u-text-9 {
+        text-align: left;
+        margin: 11px 0 0;
+    }
+
+    @media (max-width: 1199px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: repeat(3, 33.333333333333336%);
+            min-height: 307px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: repeat(2, 50%);
+            min-height: 705px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .u-section-1 .u-repeater-1 {
+            grid-template-columns: 100%;
+        }
+
+        .u-section-1 .u-container-layout-1 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .u-section-1 .u-container-layout-2 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .u-section-1 .u-container-layout-3 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+</style>
+
 <script>
     async function loadTickets() {
         let it = document.cookie.split('; ');
@@ -559,10 +703,10 @@
 
         if (response.ok) {
             let json = await response.json();
-            let result = JSON.stringify(json)
+            let result = JSON.stringify(json);
             let mass = JSON.parse(result);
             for (let i = 0; i < result.length; i++) {
-                if(mass[i]['status'] !== 'canceled') {
+                if(mass[i]['status'] !== 'canceled' && mass[i]['status'] !== 'success') {
                     let j = 0;
                     addContainer(i, mass[i]['id'], mass[i]['status']);
                     addCancelButton(mass[i]['id']);
@@ -579,13 +723,13 @@
 
     function addContainer(table_number, id, status){
         document.getElementById("sec-da98").insertAdjacentHTML("beforeend", "" +
-            "<div class=\"u-clearfix u-sheet u-valign-middle u-sheet-1\">\n" +
-            "          <div class=\"u-expanded-width-xs u-list u-list-1\">\n" +
-            "            <p class=\"u-text u-text-2\">Заказ номер: "+id+"; Состояние: "+status+"</p>"+
-            "              <div id=\"to-insert-"+table_number+"\" class=\"u-repeater u-repeater-1\">\n" +
-            "              </div>\n" +
-            "          </div>\n" +
-            "      </div>");
+            "    <div class=\"u-clearfix u-sheet u-sheet-1\">\n" +
+            "        <div class=\"u-expanded-width u-list u-list-1\">\n" +
+            "            <h4 class=\"u-text u-text-2\">Заказ номер: "+id+"; Состояние: "+status+"</h4>"+
+            "            <div id=\"to-insert-"+table_number+"\" class=\"u-repeater u-repeater-1\">\n" +
+            "            </div>\n" +
+            "        </div>\n" +
+            "    </div>");
     }
 
     async function cancelOrder(orderNumber) {
@@ -614,7 +758,7 @@
         });
 
         if (response.ok) {
-            window.open('/profile');
+            window.location.href = '/profile';
         }
     }
 
@@ -630,18 +774,18 @@
 
     function addCode(Photo, companyid, count, description, name, price, productid, table_number) {
         document.getElementById("to-insert-" + table_number).insertAdjacentHTML("beforeend", "" +
-            "<div class=\"u-list-item u-repeater-item u-video-cover u-white u-list-item-1\">\n" +
-            "                    <div class=\"u-container-layout u-similar-container\">\n" +
-            "                        <img alt=\"\" class=\"u-expanded-width-xs u-image u-image-default u-image-4\" src=\"" + Photo + "\">\n" +
-            "                        <div class=\"u-container-style u-expanded-width-xs u-group u-video-cover u-group-4\">\n" +
-            "                            <div class=\"u-container-layout u-valign-middle-xl u-valign-middle-xs u-container-layout-8\">\n" +
-            "                                <h3 class=\"u-custom-font u-font-oswald u-text u-text-10\">" + name + "</h3>\n" +
-            "                                <p class=\"u-text u-text-default u-text-11\">" + description + " COUNT:" + count + "</p>\n" +
-            "                                <h6 class=\"u-text u-text-palette-3-base u-text-12\">" + price + " RUB</h6>\n" +
-            "                            </div>\n" +
-            "                        </div>\n" +
-            "                    </div>\n" +
-            "                </div>");
+            "            <div id=\"container-" + productid + "\" class=\"u-container-style u-list-item u-repeater-item\">\n" +
+            "              <div class=\"u-container-layout u-similar-container u-valign-top u-container-layout-1\">\n" +
+            "<a class=\"boxLink\"\"><table border=\"1px solid grey;\">" +
+            "                <tr><td><img alt=\"\" class=\"u-image u-image-default u-image-1\" data-image-width=\"2000\" data-image-height=\"1333\" src=\"" + Photo + "\"></tr></td>\n" +
+            "                <tr><td><h3 class=\"u-text u-text-default u-text-1\">" + name + "</h3></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-2\">Количество: " + count + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-2\">Описание: " + description + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">Цена: " + price + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">ID: " + productid + "</p></tr></td>\n" +
+            "</table></a>" +
+            "              </div>\n" +
+            "            </div>");
     }
 </script>
 
@@ -709,13 +853,13 @@
         </nav>
       </div></header>
 
-    <section class="u-clearfix u-grey-5 u-section-1" id="sec-82f7">
+    <section class="u-clearfix u-section-1 u-grey-5" id="sec-82f7">
       <div id="to-insert" class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <h3 class="u-align-center u-text u-text-1">Ваш профиль</h3>
 
       </div>
 
-        <section class="u-align-center u-clearfix u-grey-10 u-section-1" id="sec-da98">
+        <section class="u-align-center u-clearfix u-section-1 u-grey-5" id="sec-da98">
             <h3 class="u-text u-text-1">Ваши заказы</h3>
             <p class="u-text u-text-2">Здесь вы можете следить за процессом обработки и доставки вашего заказа.</p>
         </section>
@@ -902,15 +1046,6 @@
 
       <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-1f20"><div class="u-align-left u-clearfix u-sheet u-sheet-1"></div></footer>
     <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
     </section>
   </body>
 </html>
