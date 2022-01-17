@@ -622,20 +622,33 @@
             if(result.length !== 2) {
                 for (let i = 0; i < result.length; i++) {
                     if(mass[i] === undefined) break;
-                    addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
+
+                    let url1 = 'http://localhost:4040/rating';
+                    let response1 = await fetch(url1, {
+                        method: 'GET',
+                        headers: {
+                            'companyid': mass[i]["companyid"]
+                        }
+                    });
+                    let Json = await response1.json();
+                    let Result = JSON.stringify(Json)
+                    let Mass = JSON.parse(Result);
+
+                    addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"], Mass["name"], Mass["rating"]);
                 }
             }
             else{
                 document.getElementById("table-to-insert-2").insertAdjacentHTML("afterbegin", "<h1>Корзина</h1>" +
                     "<p>В будущем здесь будет храниться то, что вы закажите. Для того, чтобы сделать ваш первый заказ" +
                     "зайдите в меню поиска и выберите нужный вам товар, после чего он окажется здесь.</p>");
+                document.getElementById("orderSection").style.visibility = "hidden";
             }
         } else {
             alert("Ошибка HTTP: " + response.status);
         }
     }
 
-    function addCode(Photo, companyid, count, description, name, price, productid) {
+    function addCode(Photo, companyid, count, description, name, price, productid, companyName, rating) {
         let id = Dcount;
         Dcount = Dcount + 1;
         var SelectedIndex;
@@ -650,54 +663,10 @@
             "                <tr><td><p class=\"u-text u-text-2\">Количество: " + count + "</p></tr></td>\n" +
             "                <tr><td><p class=\"u-text u-text-2\">Описание: " + description + "</p></tr></td>\n" +
             "                <tr><td><p class=\"u-text u-text-3\">Цена: " + price + "</p></tr></td>\n" +
-            "                <tr><td><p class=\"u-text u-text-3\">ID: " + productid + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">Производитель: " + companyName + " [" + Number(rating).toFixed(1) + "/10]</p></tr></td>\n" +
             "</table></a>" +
             "              </div>\n" +
             "            </div>");
-
-        /*document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "<div class=\"u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-1\">\n" +
-            "                    <div class=\"u-container-layout u-similar-container u-valign-top-lg u-valign-top-md u-valign-top-sm u-valign-top-xl u-container-layout-7\">\n" +
-            "                        <img alt=\"\" class=\"u-expanded-width-xs u-image u-image-default u-image-4\" src=\"" + Photo + "\">\n" +
-            "                        <div class=\"u-container-style u-expanded-width-xs u-group u-video-cover u-group-4\">\n" +
-            "                            <div class=\"u-container-layout u-valign-middle-xl u-valign-middle-xs u-container-layout-8\">\n" +
-            "                                <h3 class=\"u-custom-font u-font-oswald u-text u-text-10\">" + name + "</h3>\n" +
-            "                                <p class=\"u-text u-text-default u-text-11\">" + description + " COUNT:" + count + "</p>\n" +
-            "                                <h6 class=\"u-text u-text-palette-3-base u-text-12\">" + price + " RUB</h6>\n" +
-            "                                <h6 class=\"u-text u-text-palette-3-base u-text-12\">ИТОГ: " + price * count + " RUB</h6>\n" +
-            "                                <a id=\"INPUT"+Dcount+"\" href=\"#\" class=\"u-btn u-btn-rectangle u-button-style u-dialog-link u-grey-10 u-btn-4\">Убрать из корзины</a>\n" +
-            "                            </div>\n" +
-            "                        </div>\n" +
-            "                    </div>\n" +
-            "                </div>");*/
-        /*document.getElementById("INPUT"+Dcount).addEventListener("mousedown", async function () {
-            let url = 'http://localhost:4040/products';
-
-            let it = document.cookie.split('; ');
-            let email = '';
-            let password = '';
-            for(let i = 0; i < it.length; i++){
-                let submass = it[i].split('=');
-                if(submass[0] === 'password') {
-                    password = submass[1];
-                }
-                if(submass[0] === 'email') {
-                    email = submass[1];
-                }
-            }
-            let xhr = new XMLHttpRequest();
-            xhr.open("PUT", url);
-            xhr.setRequestHeader("Content-type", "application/json");
-            xhr.setRequestHeader('email', email);
-            xhr.setRequestHeader('password', password);
-            var data = JSON.stringify({ "Photo": Photo, "companyid": companyid,
-                "count": count, "description": description,
-                "name": name, "price": price,
-                "productid": productid });
-            xhr.send(data);
-            window.setTimeout(function () {
-                find(email, password);
-            }, 1000);
-        });*/
     }
 
     var GPhoto;
@@ -1002,7 +971,7 @@
 
 <section class="u-align-center u-clearfix u-grey-5 u-section-1" id="carousel_16f8">
     <form target="_blank"  action="/auth" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-        <div class="u-align-center u-form-group u-form-submit">
+        <div id="orderSection" class="u-align-center u-form-group u-form-submit">
             <a onclick="orderProducts()" class="u-btn u-btn-submit u-button-style">Заказать</a>
             <input type="submit" value="submit" class="u-form-control-hidden">
         </div>

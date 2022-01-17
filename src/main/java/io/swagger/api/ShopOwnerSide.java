@@ -1,6 +1,8 @@
 package io.swagger.api;
 
+import io.swagger.models.auth.In;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
@@ -50,6 +52,72 @@ public class ShopOwnerSide {
         catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static JSONObject getRating(Integer companyid){
+        try {
+            URL url = new URL (ip + ":" + port + "/rating");
+
+            con = (HttpURLConnection)url.openConnection();
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setRequestProperty("companyid", String.valueOf(companyid));
+            con.setRequestMethod("GET");
+            con.setDoOutput(true);
+            con.setDoInput(true);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line+"\n");
+            }
+
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) parser.parse(sb.toString());
+
+            int responseCode = con.getResponseCode();
+            con.disconnect();
+
+            if(responseCode == 200) {
+                return jsonObject;
+            }
+            else{
+                return null;
+            }
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
+    public static boolean postRating(String email, String password, Integer companyid, Integer rating){
+        try {
+            URL url = new URL (ip + ":" + port + "/rate");
+
+            con = (HttpURLConnection)url.openConnection();
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setRequestProperty("email", email);
+            con.setRequestProperty("password", password);
+            con.setRequestProperty("companyid", String.valueOf(companyid));
+            con.setRequestProperty("rating", String.valueOf(rating));
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);
+            con.setDoInput(true);
+            int responseCode = con.getResponseCode();
+            con.disconnect();
+
+            if(responseCode == 200) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch (Exception e){
+            return false;
         }
     }
 

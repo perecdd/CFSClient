@@ -712,7 +712,18 @@
                     addContainer(i, mass[i]['id'], mass[i]['status']);
                     addCancelButton(mass[i]['id']);
                     while (mass[i]['products'][j] !== undefined) {
-                        addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i);
+                        let url1 = 'http://localhost:4040/rating';
+                        let response1 = await fetch(url1, {
+                            method: 'GET',
+                            headers: {
+                                'companyid': mass[i]['products'][j]['companyid']
+                            }
+                        });
+                        let Json = await response1.json();
+                        let Result = JSON.stringify(Json)
+                        let Mass = JSON.parse(Result);
+
+                        addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i, Mass["name"], Mass["rating"]);
                         j++;
                     }
                 }
@@ -721,7 +732,19 @@
                     addContainer(i, mass[i]['id'], mass[i]['status']);
                     addRatingButton(mass[i]['products'][j]['companyid'], mass[i]['id']);
                     while (mass[i]['products'][j] !== undefined) {
-                        addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i);
+
+                        let url1 = 'http://localhost:4040/rating';
+                        let response1 = await fetch(url1, {
+                            method: 'GET',
+                            headers: {
+                                'companyid': mass[i]['products'][j]['companyid']
+                            }
+                        });
+                        let Json = await response1.json();
+                        let Result = JSON.stringify(Json)
+                        let Mass = JSON.parse(Result);
+
+                        addCode(mass[i]['products'][j]["Photo"], mass[i]['products'][j]["companyid"], mass[i]['products'][j]["count"], mass[i]['products'][j]["description"], mass[i]['products'][j]["name"], mass[i]['products'][j]["price"], mass[i]['products'][j]["productid"], i, Mass["name"], Mass["rating"]);
                         j++;
                     }
                 }
@@ -733,9 +756,9 @@
 
     function addContainer(table_number, id, status){
         document.getElementById("sec-da98").insertAdjacentHTML("beforeend", "" +
-            "    <div class=\"u-clearfix u-sheet u-sheet-1\">\n" +
+            "    <div style='border: dashed' class=\"u-clearfix u-sheet u-sheet-1\">\n" +
             "        <div class=\"u-expanded-width u-list u-list-1\">\n" +
-            "            <h4 class=\"u-text u-text-2\">Заказ номер: "+id+"; Состояние: "+status+"</h4>"+
+            "            <p class=\"u-text u-text-2\">Заказ номер: "+id+"; Состояние: "+status+"</p>"+
             "            <div id=\"to-insert-"+table_number+"\" class=\"u-repeater u-repeater-1\">\n" +
             "            </div>\n" +
             "        </div>\n" +
@@ -805,11 +828,13 @@
                 headers: {
                     'email': email,
                     'password': password,
-                    'companyid': companyid
+                    'companyid': companyid,
+                    'rating': document.getElementById("NUM12").value
                 }
             });
 
-            window.location.href = '/profile';
+            if(response.ok)
+                window.location.href = '/profile';
         }
     }
 
@@ -845,7 +870,7 @@
             "    </form>");
     }
 
-    function addCode(Photo, companyid, count, description, name, price, productid, table_number) {
+    function addCode(Photo, companyid, count, description, name, price, productid, table_number, companyName, rating) {
         document.getElementById("to-insert-" + table_number).insertAdjacentHTML("beforeend", "" +
             "            <div id=\"container-" + productid + "\" class=\"u-container-style u-list-item u-repeater-item\">\n" +
             "              <div class=\"u-container-layout u-similar-container u-valign-top u-container-layout-1\">\n" +
@@ -855,7 +880,7 @@
             "                <tr><td><p class=\"u-text u-text-2\">Количество: " + count + "</p></tr></td>\n" +
             "                <tr><td><p class=\"u-text u-text-2\">Описание: " + description + "</p></tr></td>\n" +
             "                <tr><td><p class=\"u-text u-text-3\">Цена: " + price + "</p></tr></td>\n" +
-            "                <tr><td><p class=\"u-text u-text-3\">ID: " + productid + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">Производитель: " + companyName + " [" + Number(rating).toFixed(1) + "/10]</p></tr></td>\n" +
             "</table></a>" +
             "              </div>\n" +
             "            </div>");
@@ -935,6 +960,7 @@
         <section class="u-align-center u-clearfix u-section-1 u-grey-5" id="sec-da98">
             <h3 class="u-text u-text-1">Ваши заказы</h3>
             <p class="u-text u-text-2">Здесь вы можете следить за процессом обработки и доставки вашего заказа.</p>
+            <p></p>
         </section>
     </section>
 
@@ -996,19 +1022,19 @@
               "<form action=\"#\" method=\"POST\" class=\"u-clearfix u-form-spacing-10 u-form-vertical u-inner-form\" source=\"custom\" name=\"form\" style=\"padding: 10px;\">\n" +
               "            <div class=\"u-form-group u-form-name\">\n" +
               "              <label for=\"name-319c\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['name']+"\" id=\"F1\" name=\"name\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваше имя: "+mass['name']+"\" id=\"F1\" name=\"name\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-group u-form-name u-form-group-2\">\n" +
               "              <label for=\"name-3e09\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['surname']+"\" id=\"F2\" name=\"surname\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваша фамилия: "+mass['surname']+"\" id=\"F2\" name=\"surname\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-email u-form-group\">\n" +
               "              <label for=\"email-319c\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"email\" placeholder=\""+mass['email']+"\" id=\"F3\" name=\"email\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"email\" placeholder=\"Ваш электронный адрес: "+mass['email']+"\" id=\"F3\" name=\"email\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-group u-form-phone u-form-group-4\">\n" +
               "              <label for=\"phone-2be9\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"tel\" pattern=\"\\+?\\d{0,3}[\\s\\(\\-]?([0-9]{2,3})[\\s\\)\\-]?([\\s\\-]?)([0-9]{3})[\\s\\-]?([0-9]{2})[\\s\\-]?([0-9]{2})\" placeholder=\""+mass['phone']+"\" id=\"F4\" name=\"phone\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"tel\" pattern=\"\\+?\\d{0,3}[\\s\\(\\-]?([0-9]{2,3})[\\s\\)\\-]?([\\s\\-]?)([0-9]{3})[\\s\\-]?([0-9]{2})[\\s\\-]?([0-9]{2})\" placeholder=\"Ваш телефон: "+mass['phone']+"\" id=\"F4\" name=\"phone\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-group u-form-group-5\">\n" +
               "              <label for=\"text-76dc\" class=\"u-form-control-hidden u-label\"></label>\n" +
@@ -1016,26 +1042,26 @@
               "            </div>\n" +
               "            <div class=\"u-form-address u-form-group u-form-group-6\">\n" +
               "              <label for=\"address-e9c9\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['address']['country']+"\" id=\"F6\" name=\"country\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваша страна: "+mass['address']['country']+"\" id=\"F6\" name=\"country\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-address u-form-group u-form-group-7\">\n" +
               "              <label for=\"address-de8e\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['address']['city']+"\" id=\"F7\" name=\"city\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваш город: "+mass['address']['city']+"\" id=\"F7\" name=\"city\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-address u-form-group u-form-group-8\">\n" +
               "              <label for=\"address-08d4\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['address']['street']+"\" id=\"F8\" name=\"street\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваша улица: "+mass['address']['street']+"\" id=\"F8\" name=\"street\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-address u-form-group u-form-group-9\">\n" +
               "              <label for=\"address-283b\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['address']['house']+"\" id=\"F9\" name=\"house\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваш дом: "+mass['address']['house']+"\" id=\"F9\" name=\"house\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-form-address u-form-group u-form-group-10\">\n" +
               "              <label for=\"address-fb83\" class=\"u-form-control-hidden u-label\"></label>\n" +
-              "              <input type=\"text\" placeholder=\""+mass['address']['flat']+"\" id=\"F10\" name=\"flat\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
+              "              <input type=\"text\" placeholder=\"Ваша квартира: "+mass['address']['flat']+"\" id=\"F10\" name=\"flat\" class=\"u-border-1 u-border-grey-30 u-input u-input-rectangle u-white\" required=\"\">\n" +
               "            </div>\n" +
               "            <div class=\"u-align-left u-form-group u-form-submit\">\n" +
-              "              <a id=\"INPUT\" href=\"\" class=\"u-btn u-btn-submit u-button-style\">Отправить</a>\n" +
+              "              <a id=\"INPUT\" href=\"\" class=\"u-btn u-btn-submit u-button-style\">Обновить профиль</a>\n" +
               "              <input type=\"submit\" value=\"submit\" class=\"u-form-control-hidden\">\n" +
               "            </div>\n" +
               "          </form>" +

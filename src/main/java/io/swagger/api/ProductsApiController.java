@@ -2,6 +2,7 @@ package io.swagger.api;
 
 import io.swagger.model.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.swagger.model.Rating;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -86,6 +87,33 @@ public class ProductsApiController implements ProductsApi {
         System.out.println("putProducts");
 
         if(CFS.AddOrRemoveProductInUserBucket(email, password, body)) {
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Rating> getRating(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyid", required=true) Integer companyid){
+        String accept = request.getHeader("Accept");
+        JSONObject jsonObject = ShopOwnerSide.getRating(companyid);
+        if(jsonObject != null){
+            try {
+                return new ResponseEntity<Rating>(objectMapper.readValue(jsonObject.toString(), Rating.class), HttpStatus.OK);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                return new ResponseEntity<Rating>(HttpStatus.BAD_REQUEST);
+            }
+        }
+        else{
+            return new ResponseEntity<Rating>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public ResponseEntity<Void> postRating(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyid", required=true) Integer companyid, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="rating", required=true) Integer rating){
+        String accept = request.getHeader("Accept");
+        if(ShopOwnerSide.postRating(email, password, companyid, rating)){
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
         else{

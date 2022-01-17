@@ -94,7 +94,20 @@
             if(result.length !== 2) {
                 for (let i = 0; i < result.length; i++) {
                     if(mass[i] === undefined) break;
-                    addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"]);
+
+                    let url1 = 'http://localhost:4040/rating';
+                    let response1 = await fetch(url1, {
+                        method: 'GET',
+                        headers: {
+                            'companyid': mass[i]["companyid"]
+                        }
+                    });
+                    let Json = await response1.json();
+                    let Result = JSON.stringify(Json)
+                    let Mass = JSON.parse(Result);
+
+                    if(response1.ok)
+                        addCode(mass[i]["Photo"], mass[i]["companyid"], mass[i]["count"], mass[i]["description"], mass[i]["name"], mass[i]["price"], mass[i]["productid"], Mass["name"], Mass["rating"]);
                 }
             }
             else{
@@ -105,7 +118,7 @@
         }
     }
 
-    function addCode(Photo, companyid, count, description, name, price, productid) {
+    function addCode(Photo, companyid, count, description, name, price, productid, companyName, rating) {
         document.getElementById("table-to-insert").insertAdjacentHTML("beforeend", "" +
             "            <div id=\"container-" + productid + "\" class=\"u-container-style u-list-item u-repeater-item\">\n" +
             "              <div class=\"u-container-layout u-similar-container u-valign-top u-container-layout-1\">\n" +
@@ -115,7 +128,7 @@
             "                <tr><td><p class=\"u-text u-text-2\">Количество: " + count + "</p></tr></td>\n" +
             "                <tr><td><p class=\"u-text u-text-2\">Описание: " + description + "</p></tr></td>\n" +
             "                <tr><td><p class=\"u-text u-text-3\">Цена: " + price + "</p></tr></td>\n" +
-            "                <tr><td><p class=\"u-text u-text-3\">ID: " + productid + "</p></tr></td>\n" +
+            "                <tr><td><p class=\"u-text u-text-3\">Производитель: " + companyName + " [" + Number(rating).toFixed(1) + "/10]</p></tr></td>\n" +
             "</table></a>" +
             "              </div>\n" +
             "            </div>");
@@ -161,6 +174,7 @@
             document.getElementById("NumCalc").innerHTML = 'Вы заплатите: ' + totalPrice;
         });
         document.getElementById("INPUT").addEventListener("mousedown", async function () {
+            if(Number(document.getElementById("NUM").value) <= 0) return;
             let url = 'http://localhost:4040/products';
 
             let it = document.cookie.split('; ');

@@ -5,7 +5,9 @@
  */
 package io.swagger.api;
 
+import io.swagger.model.InlineResponse200;
 import io.swagger.model.Product;
+import io.swagger.model.Rating;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -77,5 +79,23 @@ public interface ProductsApi {
             method = RequestMethod.PUT)
     ResponseEntity<Void> putProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Product body);
 
+    @Operation(summary = "", description = "", tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User Found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Rating.class))),
+
+            @ApiResponse(responseCode = "404", description = "User Not Found") })
+    @RequestMapping(value = "/rating",
+            produces = { "application/json" },
+            method = RequestMethod.GET)
+    ResponseEntity<Rating> getRating(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="productID", required=true) Integer productID);
+
+    @Operation(summary = "", description = "", tags={  })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User Found"),
+
+            @ApiResponse(responseCode = "404", description = "User Not Found") })
+    @RequestMapping(value = "/rating",
+            method = RequestMethod.POST)
+    ResponseEntity<Void> postRating(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyid", required=true) Integer companyid, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="rating", required=true) Integer rating);
 }
 
