@@ -38,64 +38,34 @@ import java.util.Map;
 @Validated
 public interface ProductsApi {
 
-    @Operation(summary = "Get User Info by User ID", description = "Get products", tags={  })
+    @Operation(summary = "Receives products on request.", description = "The request is issued with a set of products that meet the specified user requirements.", tags={  })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User Found", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Product.class)))),
-
-            @ApiResponse(responseCode = "404", description = "User Not Found") })
+            @ApiResponse(responseCode = "401", description = "Bad request") })
     @RequestMapping(value = "/products",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<Product>> getProducts(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="name", required=false) String name, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="minPrice", required=false) Integer minPrice, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="maxPrice", required=false) Integer maxPrice, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyID", required=false) Integer companyID, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="count", required=false) Integer count, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="productID", required=false) Integer productID);
+    ResponseEntity<List<Product>> getProducts(@Parameter(in = ParameterIn.HEADER, description = "Product name." ,schema=@Schema()) @RequestHeader(value="name", required=false) String name, @Parameter(in = ParameterIn.HEADER, description = "The minimum price of the product." ,schema=@Schema()) @RequestHeader(value="minPrice", required=false) Integer minPrice, @Parameter(in = ParameterIn.HEADER, description = "The maximum price of the product." ,schema=@Schema()) @RequestHeader(value="maxPrice", required=false) Integer maxPrice, @Parameter(in = ParameterIn.HEADER, description = "Company ID." ,schema=@Schema()) @RequestHeader(value="companyID", required=false) Integer companyID, @Parameter(in = ParameterIn.HEADER, description = "Minimum quantity of goods in stock." ,schema=@Schema()) @RequestHeader(value="count", required=false) Integer count, @Parameter(in = ParameterIn.HEADER, description = "Product ID." ,schema=@Schema()) @RequestHeader(value="productID", required=false) Integer productID);
 
 
-    @Operation(summary = "", description = "Order products", tags={  })
+    @Operation(summary = "Orders groceries.", description = "Sends an order request for all products contained in the cart.", tags={  })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
-
-            @ApiResponse(responseCode = "401", description = "Unauthorized"),
-
-            @ApiResponse(responseCode = "403", description = "Forbidden"),
-
-            @ApiResponse(responseCode = "404", description = "Not Found") })
+            @ApiResponse(responseCode = "401", description = "Unauthorized")})
     @RequestMapping(value = "/products",
             method = RequestMethod.POST)
-    ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema())@RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema())@RequestHeader(value="password", required=true) String password);
+    ResponseEntity<Void> postProducts(@Parameter(in = ParameterIn.HEADER, description = "User's email" ,required=true,schema=@Schema())@RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "User's password" ,required=true,schema=@Schema())@RequestHeader(value="password", required=true) String password);
 
 
-    @Operation(summary = "", description = "Remove or Add product from basket", tags={  })
+    @Operation(summary = "Adds/removes a product in the shopping cart.", description = "The request, if such a product exists, then removes it from the basket, if there is no such product yet, then adds it. This operation is necessary so that the user can add products one by one from the list on the site, or if he has lost the need for some product, then remove the one that is not needed by trying to add it again.", tags={  })
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
 
-            @ApiResponse(responseCode = "400", description = "Bad Request"),
-
-            @ApiResponse(responseCode = "401", description = "Unauthorized"),
-
-            @ApiResponse(responseCode = "403", description = "Forbidden"),
-
-            @ApiResponse(responseCode = "404", description = "Not Found") })
+            @ApiResponse(responseCode = "400", description = "Bad Request") })
     @RequestMapping(value = "/products",
             consumes = { "application/json" },
             method = RequestMethod.PUT)
-    ResponseEntity<Void> putProducts(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody Product body);
+    ResponseEntity<Void> putProducts(@Parameter(in = ParameterIn.HEADER, description = "User's email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "User's password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "Product info.", schema=@Schema()) @Valid @RequestBody Product body);
 
-    @Operation(summary = "", description = "", tags={  })
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User Found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Rating.class))),
-
-            @ApiResponse(responseCode = "404", description = "User Not Found") })
-    @RequestMapping(value = "/rating",
-            produces = { "application/json" },
-            method = RequestMethod.GET)
-    ResponseEntity<Rating> getRating(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="productID", required=true) Integer productID);
-
-    @Operation(summary = "", description = "", tags={  })
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User Found"),
-
-            @ApiResponse(responseCode = "404", description = "User Not Found") })
-    @RequestMapping(value = "/rating",
-            method = RequestMethod.POST)
-    ResponseEntity<Void> postRating(@Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="companyid", required=true) Integer companyid, @Parameter(in = ParameterIn.HEADER, description = "" ,schema=@Schema()) @RequestHeader(value="rating", required=true) Integer rating);
 }
 

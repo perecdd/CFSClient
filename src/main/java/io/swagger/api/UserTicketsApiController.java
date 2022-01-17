@@ -49,7 +49,7 @@ public class UserTicketsApiController implements UserTicketsApi {
         this.request = request;
     }
 
-    public ResponseEntity<List<InlineResponse200>> getUserTickets(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password) {
+    public ResponseEntity<List<InlineResponse200>> getUserTickets(@Parameter(in = ParameterIn.HEADER, description = "User's email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "User's password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password) {
         String accept = request.getHeader("Accept");
         if(email == null || password == null) return new ResponseEntity<List<InlineResponse200>>(HttpStatus.UNAUTHORIZED);
 
@@ -64,11 +64,11 @@ public class UserTicketsApiController implements UserTicketsApi {
             }
         } catch (IOException e) {
             log.error("Couldn't serialize response for content type application/json", e);
-            return new ResponseEntity<List<InlineResponse200>>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<List<InlineResponse200>>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    public ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password,@Parameter(in = ParameterIn.HEADER, description = "ticket" ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) Integer ticket) {
+    public ResponseEntity<Void> postUserTickets(@Parameter(in = ParameterIn.HEADER, description = "User's email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "User's password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.HEADER, description = "Order ID." ,required=true,schema=@Schema()) @RequestHeader(value="ticket", required=true) Integer ticket) {
         String accept = request.getHeader("Accept");
         if(email == null || password == null || ticket == null) return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
         if(ShopOwnerSide.cancelTicket(email, password, ticket)) {

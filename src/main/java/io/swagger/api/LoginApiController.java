@@ -75,21 +75,19 @@ public class LoginApiController implements LoginApi {
                     return new ResponseEntity<List<Product>>(objectMapper.readValue(jsonArray.toString(), List.class), HttpStatus.OK);
                 }
                 else{
-                    return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+                    return new ResponseEntity<List<Product>>(HttpStatus.UNAUTHORIZED);
                 }
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Product>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<List<Product>>(HttpStatus.BAD_REQUEST);
             }
         }
-        return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<Product>>(HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Void> putLogin(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email,@Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body) {
+    public ResponseEntity<Void> putLogin(@Parameter(in = ParameterIn.HEADER, description = "User's email", required = true, schema = @Schema()) @RequestHeader(value = "email", required = true) String email, @Parameter(in = ParameterIn.HEADER, description = "User's password", required = true, schema = @Schema()) @RequestHeader(value = "password", required = true) String password, @Parameter(in = ParameterIn.DEFAULT, description = "New user information.", schema = @Schema()) @Valid @RequestBody User body) {
         String accept = request.getHeader("Accept");
         JSONObject user = new JSONObject();
-
-        System.out.println("putLogin");
 
         user.put("email", body.getEmail());
         user.put("id", body.getId());
@@ -109,7 +107,6 @@ public class LoginApiController implements LoginApi {
         user.put("address", address);
 
         if(CFS.UpdateUserInformation(email, password, user)) {
-            System.out.println("OK PUTED");
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
         else{
@@ -117,7 +114,7 @@ public class LoginApiController implements LoginApi {
         }
     }
 
-    public ResponseEntity<Void> postLogin(@Parameter(in = ParameterIn.DEFAULT, description = "", schema=@Schema()) @Valid @RequestBody User body) {
+    public ResponseEntity<Void> postLogin(@Parameter(in = ParameterIn.DEFAULT, description = "User information.", schema = @Schema()) @Valid @RequestBody User body) {
         String accept = request.getHeader("Accept");
         JSONObject user = new JSONObject();
 
@@ -140,40 +137,11 @@ public class LoginApiController implements LoginApi {
 
         user.put("address", address);
 
-        JSONArray products = new JSONArray();
-        for(Product product : body.getBasket()){
-            JSONObject JSONproduct = new JSONObject();
-            JSONproduct.put("name", product.getName());
-            JSONproduct.put("Photo", product.getPhoto());
-            JSONproduct.put("companyid", product.getCompanyid());
-            JSONproduct.put("productid", product.getProductid());
-            JSONproduct.put("price", product.getPrice());
-            JSONproduct.put("count", product.getCount());
-            JSONproduct.put("description", product.getDescription());
-        }
-        user.put("basket", products);
-
         if(CFS.createUser(user)) {
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
         else{
             return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    public ResponseEntity<User> getProfile(@Parameter(in = ParameterIn.HEADER, description = "email" ,required=true,schema=@Schema()) @RequestHeader(value="email", required=true) String email, @Parameter(in = ParameterIn.HEADER, description = "password" ,required=true,schema=@Schema()) @RequestHeader(value="password", required=true) String password, HttpServletResponse response){
-        JSONObject profile = CFS.GetProfile(email, password);
-        if(profile != null){
-            try {
-                return new ResponseEntity<User>(objectMapper.readValue(profile.toString(), User.class), HttpStatus.OK);
-            }
-            catch (Exception e){
-                e.printStackTrace();
-                return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
-            }
-        }
-        else{
-            return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED);
         }
     }
 }
