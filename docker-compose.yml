@@ -1,0 +1,15 @@
+services:
+  site-cfs:
+    container_name: site-cfs
+    build:
+      context: . .
+      dockerfile: ./Dockerfile
+    ports:
+      - "4040:4040"
+    networks:
+      - shared-network
+    volumes:
+      - /volumes/site-cfs
+networks:
+  shared-network:
+    external: true
