@@ -25,7 +25,6 @@ public class CFS {
             URL url = new URL (ip + ":" + port + "/user");
 
             con = (HttpURLConnection)url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
@@ -65,7 +64,6 @@ public class CFS {
             URL url = new URL (ip + ":" + port + "/product");
 
             con = (HttpURLConnection)url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             if(name != null) con.setRequestProperty("name", name);
@@ -104,7 +102,6 @@ public class CFS {
             URL url = new URL (ip + ":" + port + "/user/profile");
 
             con = (HttpURLConnection)url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
@@ -139,7 +136,6 @@ public class CFS {
             URL url = new URL (ip + ":" + port + "/user");
 
             con = (HttpURLConnection)url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
@@ -163,7 +159,6 @@ public class CFS {
         try {
             URL url = new URL(ip + ":" + port + "/user");
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
@@ -194,7 +189,6 @@ public class CFS {
             {
                 URL url = new URL(ip + ":" + port + "/user");
                 con = (HttpURLConnection) url.openConnection();
-                con.setRequestProperty("User-Agent", "ShopOwnerApplication");
                 con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
                 con.setRequestProperty("Accept", "application/json");
                 con.setRequestMethod("POST");
@@ -203,7 +197,6 @@ public class CFS {
 
                 PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(con.getOutputStream())), true);
                 UserJSON.remove("basket");
-                System.out.println(UserJSON.get("password"));
                 out.println(UserJSON.toString());
 
                 responseCode1 = con.getResponseCode();
@@ -260,7 +253,6 @@ public class CFS {
 
             URL url = new URL(ip + ":" + port + "/user/patch");
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
@@ -289,7 +281,6 @@ public class CFS {
         try {
             URL url = new URL(ip + ":" + port + "/user");
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
@@ -318,7 +309,6 @@ public class CFS {
         try {
             URL url = new URL(ip + ":" + port + "/product");
             con = (HttpURLConnection) url.openConnection();
-            con.setRequestProperty("User-Agent", "ShopOwnerApplication");
             con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             con.setRequestProperty("Accept", "application/json");
             con.setRequestProperty("email", email);
